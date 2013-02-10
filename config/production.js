@@ -47,7 +47,6 @@ var config = {
     , port: 5432
     }
   }
-*/
 
 /* // Using Postgres as the default, with both Postgres and Riak
 , model: {
