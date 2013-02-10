@@ -16,7 +16,7 @@ var UsersModels = function () {
   this.add = function (req, resp, params) {
     params.id = params.id || geddy.string.uuid(10);
 
-    console.log("params are: %j" params);
+    console.log("params are: %j", params);
     console.log("req is : %j", req);
 
   //   console.log("request.body is :" + request.body);
