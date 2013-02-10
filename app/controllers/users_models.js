@@ -9,12 +9,69 @@ var UsersModels = function () {
     });
   };
 
-  this.add = function (req, resp, params) {
-    this.respond({params: params});
-  };
+  // this.add = function (req, resp, params) {
+  //   this.respond({params: params});
+  // };
 
-  this.create = function (req, resp, params) {
+  this.add = function (req, resp, params) {
     params.id = params.id || geddy.string.uuid(10);
+
+    console.log("params are: %j" params);
+    console.log("req is : %j", req);
+
+  //   console.log("request.body is :" + request.body);
+  
+  // //Set response type
+  // response.set('Content-Type', 'application/json');
+
+  // if (request.is('application/json')) { 
+  //   //DO EVERYTHING
+  
+  //   username = String(request.body.user);
+  //   password = String(request.body.password);
+  //   console.log("username length is: " + username.length);
+  //   console.log("password length is: " + password.length);
+  //   //Check if username is not empty and <128 chars
+  //   if (!username || username=="" || username.length >= 128) {
+  //     var answerDict = {};
+  //     answerDict.errCode = -3; "ERR_BAD_USERNAME"
+  //     response.send(answerDict);
+  //   } else if (!password || password=="" || password.length >= 128){
+  //     //Check if password is not empty and <128 chars
+  //     var answerDict = {};
+  //     answerDict.errCode = -4; "ERR_BAD_PASSWORD"
+  //     response.send(answerDict);
+  //   } else {
+  //     //Check if exists
+  //     client.query('SELECT * FROM users WHERE username = $1', [username],
+  //       function (err, result) {
+  //         console.log("Result from if user exists: %j", result);
+  //         if (result.rowCount > 0) {
+  //           var answerDict = {};
+  //           answerDict.errCode = -2; //"ERR_USER_EXISTS"
+  //           response.send(answerDict);
+  //         } else if (result.rowCount == 0) {
+  //           //Doesn't exist so create it
+  //           client.query('INSERT INTO users VALUES ($1, $2, $3)', [username, password, 0], 
+  //             function (err, result) {
+  //               console.log("RESULT IS :" + result);
+  //               var answerDict = {};
+  //               console.log("SUCCESS");
+  //               answerDict.errCode = 1; //"SUCCESS"
+  //               response.send(answerDict);
+  //           });
+  //         }
+  //     });
+  //   }
+  // }
+
+
+
+
+
+
+
+
 
     var self = this
       , usersModel = geddy.model.UsersModel.create(params);
@@ -24,6 +81,7 @@ var UsersModels = function () {
         params.errors = err;
         self.transfer('add');
       } else {
+
         self.redirect({controller: self.name});
       }
     });
