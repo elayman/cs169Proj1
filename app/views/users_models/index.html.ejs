@@ -1,0 +1,19 @@
+<div class="hero-unit">
+  <h2>All UsersModels</h2>
+  <%- linkTo('Create a new UsersModel', addUsersModelPath, {class: 'btn pull-right'}); %>
+</div>
+
+<div id="usersModels-list">
+<% if (usersModels) { %>
+<% for (var i = 0, ii = usersModels.length; i < ii; i++) { %>
+  <div class="row list-item" id="usersModel-<%= usersModels[i].id; %>">
+    <div class="span8">
+      <h3><%- linkTo(usersModels[i].id, usersModelPath(usersModels[i].id)); %></h3>
+    </div>
+    <div class="span4">
+      <h3><i class="icon-list-alt"></i><%= usersModels[i].id; %></h3>
+    </div>
+  </div>
+<% } %>
+<% } %>
+</div>
