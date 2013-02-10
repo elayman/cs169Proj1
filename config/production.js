@@ -20,7 +20,7 @@ var config = {
   detailedErrors: false
 , hostname: null
 , port: 4000
-, model: {
+/*, model: {
     defaultAdapter: 'mongo'
   }
 , db: {
@@ -33,8 +33,8 @@ var config = {
     , port: 27017
     }
   }
-
-/* // Using Postgres as the default, with only a Postgres DB
+*/
+ // Using Postgres as the default, with only a Postgres DB
 , model: {
     defaultAdapter: 'postgres'
   }
