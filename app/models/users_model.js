@@ -1,15 +1,13 @@
 var UsersModel = function () {
 
   this.defineProperties({
-    user: {type: 'string'},
-    password: {type: 'string'},
-    count: {type: 'int'},
+    user: {type: 'string', required: true},
+    password: {type: 'string', required: true},
+    count: {type: 'int', required: true},
   });
 
-  
-  this.property('login', 'string', {required: true});
-  this.property('password', 'string', {required: true});
-  this.property('count', 'int', {required: true});
+  this.validatesLength('user', {max: '128'});
+  this.validatesLength('password', {max: '128'});
 
   /*
   this.property('lastName', 'string');
@@ -33,6 +31,13 @@ var UsersModel = function () {
 
 };
 
+
+UsersModel.add = function add (user, password) {
+  var count = 0;
+  //Add to database
+
+  return true;
+}
 /*
 // Can also define them on the prototype
 UsersModel.prototype.someOtherMethod = function () {
