@@ -78,7 +78,7 @@ tests = {
   }
  //  'Test Model TESTAPI_resetFixture': function () {
 	// UsersModel.TESTAPI_resetFixture(function (answerDict) {
-	//   		assert.equal(answerDict, {'errCode': null});
+	//   		assert.equal(answerDict, {'errCode': 1});
 	//   	});
 	// //Add user previously added
 	// UsersModel.add('Greg', 'MyPassword!', function (answerDict) {
