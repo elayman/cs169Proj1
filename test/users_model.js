@@ -35,7 +35,7 @@ tests = {
   },
   'Test Model Add Empty Password': function () {
 	UsersModel.add('Greg5', '', function (answerDict) {
-	  		assert.equal(answerDict, {'errCode': -4});
+	  		assert.equal(answerDict, {"errCode":-4});
 	  	});
   },
   'Test Model Add Empty Password': function () {
@@ -58,7 +58,8 @@ tests = {
   	// var x = 2;
   	// while (x<10){
 		UsersModel.getCount('Greg', 'MyPassword!', function (count) {
-		  		assert.equal(count, 2);
+				assert(count && count == 2);
+		  		//assert.equal(count, 2);
 		  	});
 	// }
   },
