@@ -43,7 +43,7 @@ var config = {
       user: process.env.USER
     , database: process.env.USER
     , password: null
-    , host: process.env.DATABASE_URL
+    , host: null
     , port: 5432
     }
   }
