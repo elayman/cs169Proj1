@@ -52,9 +52,9 @@ UsersModel.add = function add (username, password, callback) {
         //   return callback(err, null);
         // }
         // if we already have the user, don't add another
-        console.log("got error: " + err + " and result:" + result);
+        // console.log("got error: " + err + " and result:" + result);
         if (result) {
-          console.log("ERR_USER_EXISTS");
+          // console.log("ERR_USER_EXISTS");
           var answerDict = {};
           answerDict.errCode = -2; //"ERR_USER_EXISTS"
           callback(answerDict);
@@ -63,17 +63,17 @@ UsersModel.add = function add (username, password, callback) {
         else {
           // todo.saved = true;
           var userInstance = geddy.model.UsersModel.create({username: username, password: password, count: 1});
-          console.log("userInstance created: " + userInstance);
-          console.log("userInstance count: " + userInstance.count);
+          // console.log("userInstance created: " + userInstance);
+          // console.log("userInstance count: " + userInstance.count);
           geddy.model.UsersModel.save(userInstance, function (err, results) {
           //geddy.db.users.save(todo, function(err, docs){
             //console.log("RESULT IS :" + results);
-            console.log("Saved user instanc with error: " + err);
-            console.log("results are: " + results);
+            // console.log("Saved user instance with error: " + err);
+            // console.log("results are: " + results);
             var answerDict = {};
             answerDict.errCode = 1; //"SUCCESS"
             answerDict.count = 1;
-            console.log("SUCCESS");
+            // console.log("SUCCESS");
             callback(answerDict);
             //return callback(err, docs);
           });
@@ -87,27 +87,27 @@ UsersModel.login = function exists (username, password, callback) {
   //geddy.db.users.findOne({username: user, password: password}, function(err, result){
     if (err) {
       //"ERR_BAD_CREDENTIALS"
-      console.log("ERR_BAD_CREDENTIALS ");
+      // console.log("ERR_BAD_CREDENTIALS ");
       var answerDict = {};
       answerDict.errCode = -1;
       callback(answerDict);
     }
     // if we already have the user, update count
     if (result) {
-      console.log("WE GOT A USER: " + result);
+      // console.log("WE GOT A USER: " + result);
       result.updateProperties({count: result.count + 1});
       result.save(function(err, data) {
         if (err) {
-          console.log("got an error updating count: " + err);
+          // console.log("got an error updating count: " + err);
           //"ERR_BAD_CREDENTIALS"
-          console.log("ERR_BAD_CREDENTIALS ");
+          // console.log("ERR_BAD_CREDENTIALS ");
           var answerDict = {};
           answerDict.errCode = -1;
           callback(answerDict);
         } else {
-          console.log("updated count + 1 with data: " + data);
+          // console.log("updated count + 1 with data: " + data);
           //"SUCCESS"
-          console.log("SUCCESS with Count: " + data.count);
+          // console.log("SUCCESS with Count: " + data.count);
           var answerDict = {};
           answerDict.errCode = 1;
           answerDict.count = data.count;
@@ -117,7 +117,7 @@ UsersModel.login = function exists (username, password, callback) {
     } else{
       //No user exists with this login
       //"ERR_BAD_CREDENTIALS"
-      console.log("ERR_BAD_CREDENTIALS ");
+      // console.log("ERR_BAD_CREDENTIALS ");
       var answerDict = {};
       answerDict.errCode = -1;
       callback(answerDict);
@@ -127,9 +127,9 @@ UsersModel.login = function exists (username, password, callback) {
 
 UsersModel.TESTAPI_resetFixture = function TESTAPI_resetFixture (callback) {
   geddy.model.UsersModel.all(function (err, result) {
-    console.log("got all users models with error: " + err + " and result: " + result);
+    // console.log("got all users models with error: " + err + " and result: " + result);
     for (var userModel in result){
-      console.log("trying to remove userModel: " + result[userModel]);
+      // console.log("trying to remove userModel: " + result[userModel]);
       geddy.model.UsersModel.remove(result[userModel].id);
     }
     callback({'errCode': null});
@@ -142,12 +142,12 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
   var tests = require('../../test/users_model.js');
   var failedTests = [];
   for (var key in tests){
-    console.log("running test: " + key);
+    // console.log("running test: " + key);
     try{
       tests[key]();
       successCount += 1;
     } catch(exception){
-      console.log("Got exception: " + exception);
+      // console.log("Got exception: " + exception);
       failCount += 1;
       failedTests.append(key);
     }
