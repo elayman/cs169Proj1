@@ -97,7 +97,7 @@ UsersModel.getCount = function exists (username, password, callback) {
           callback(false);
         } else {
           console.log("updated count + 1 with data: " + data);
-          callback(result.count);
+          callback(data.count);
         }
       });
     } else{
