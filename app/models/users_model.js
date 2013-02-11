@@ -126,7 +126,7 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
   for (var key in tests){
     console.log("running test: " + key);
     try{
-      geddy.test.tests[key]();
+      tests[key]();
       successCount += 1;
     } catch(exception){
       console.log("Got exception: " + exception);
