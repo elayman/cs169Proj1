@@ -35,9 +35,46 @@ var UsersModel = function () {
 UsersModel.add = function add (user, password) {
   var count = 0;
   //Add to database
-
+  geddy.db.user_models.findOne({username: user}, function(err, result){
+    if (err) {
+      return callback(err, null);
+    }
+    // if we already have the user, don't add another
+    if (result) {
+      return -3;
+    }
+    // if we don't already have the to do item, save a new one
+    else {
+      todo.saved = true;
+      geddy.db.todos.save(todo, function(err, docs){
+        return callback(err, docs);
+      });
+    }
+  });
   return true;
-}
+};
+
+UsersModel.exists = function exists (user) {
+  geddy.db.user_models.findOne({username: user}, function(err, result){
+    if (err) {
+      return false;
+    }
+    // if we already have the user, don't add another
+    if (result) {
+      result.updateProperties({count: result.count + 1});
+        result.save(function(err, data) {
+          if (err) {
+
+          } else {
+            return result.count + 1;
+          }
+        });
+      });
+    } else{
+      return false;
+    }
+  });
+};
 /*
 // Can also define them on the prototype
 UsersModel.prototype.someOtherMethod = function () {

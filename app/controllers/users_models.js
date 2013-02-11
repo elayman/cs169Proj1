@@ -19,7 +19,7 @@ var UsersModels = function () {
     console.log("params are: %j", params);
     console.log("req is : %j", req);
 
-  //   console.log("request.body is :" + request.body);
+    console.log("request.body is :" + req.body);
   
   // //Set response type
   // response.set('Content-Type', 'application/json');
@@ -66,13 +66,6 @@ var UsersModels = function () {
   // }
 
 
-
-
-
-
-
-
-
     var self = this
       , usersModel = geddy.model.UsersModel.create(params);
 
@@ -87,21 +80,36 @@ var UsersModels = function () {
     });
   };
 
-  this.show = function (req, resp, params) {
+  this.login = function (req, resp, params) {
     var self = this;
 
-    geddy.model.UsersModel.first(params.id, function(err, usersModel) {
-      self.respond({params: params, usersModel: usersModel.toObj()});
-    });
+    var count = UsersModel.exists(req.body.user);
+    if (count != false) {
+      //"SUCCESS"
+      console.log("SUCCESS with Count: " + count);
+      self.respond({errCode: 1, count: count});
+    } else {
+      //"ERR_BAD_CREDENTIALS"
+      console.log("ERR_BAD_CREDENTIALS " + req);
+      self.respond({errCode: -1})
+    }
   };
 
-  this.edit = function (req, resp, params) {
-    var self = this;
+  // this.show = function (req, resp, params) {
+  //   var self = this;
 
-    geddy.model.UsersModel.first(params.id, function(err, usersModel) {
-      self.respond({params: params, usersModel: usersModel});
-    });
-  };
+  //   geddy.model.UsersModel.first(params.id, function(err, usersModel) {
+  //     self.respond({params: params, usersModel: usersModel.toObj()});
+  //   });
+  // };
+
+  // this.edit = function (req, resp, params) {
+  //   var self = this;
+
+  //   geddy.model.UsersModel.first(params.id, function(err, usersModel) {
+  //     self.respond({params: params, usersModel: usersModel});
+  //   });
+  // };
 
   this.update = function (req, resp, params) {
     var self = this;
