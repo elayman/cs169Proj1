@@ -82,8 +82,8 @@ var UsersModels = function () {
 
   this.login = function (req, resp, params) {
     var self = this;
-    console.log("REQUEST IS: " + req);
-    console.log("PARAMS ARE: " + params);
+    console.log("REQUEST IS: %j", req);
+    console.log("PARAMS ARE: %j", params);
     var count = geddy.model.UsersModel.exists(req.user);
     if (count != false) {
       //"SUCCESS"
