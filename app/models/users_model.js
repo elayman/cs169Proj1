@@ -62,7 +62,7 @@ UsersModel.add = function add (username, password, callback) {
         // if we don't already have the user model, save a new one
         else {
           // todo.saved = true;
-          var userInstance = geddy.model.UsersModel.create({username: username, password: password, count: 0});
+          var userInstance = geddy.model.UsersModel.create({username: username, password: password, count: '0'});
           console.log("userInstance created: " + userInstance);
           console.log("userInstance count: " + userInstance.count);
           geddy.model.UsersModel.save(userInstance, function (err, results) {
