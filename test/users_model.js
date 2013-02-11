@@ -35,7 +35,6 @@ tests = {
   },
   'Test Model Add Empty Password': function () {
 	UsersModel.add('Greg5', '', function (answerDict) {
-		console.log("answerDict is: " + answerDict);
 	  		assert.equal(answerDict, {'errCode': -4});
 	  	});
   },
@@ -47,20 +46,21 @@ tests = {
   },
   'Test Model Add 129 Password': function () {
 	UsersModel.add('Greg7', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', function (answerDict) {
+	  		console.log("answerDict is: " + answerDict);
 	  		assert.equal(answerDict, {'errCode': -4});
 	  	});
   },
   'Test Model Login 10 times': function () {
   	var x = 2;
   	while (x<10){
-		UsersModel.getCount('Greg', 'MyPassword!', function (answerDict) {
-		  		assert.equal(answerDict, {'errCode': 1, 'count': x});
+		UsersModel.getCount('Greg', 'MyPassword!', function (count) {
+		  		assert.equal(count, x);
 		  	});
 	}
   },
   'Test Model Login Bad Credentials': function () {
-	UsersModel.getCount('Greg12392', 'MyPassword!', function (answerDict) {
-	  		assert.equal(answerDict, {'errCode': -1});
+	UsersModel.getCount('Greg12392', 'MyPassword!', function (count) {
+	  		assert.equal(count, false);
 	  	});
   },
   'Test Model TESTAPI_resetFixture': function () {
