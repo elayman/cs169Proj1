@@ -66,7 +66,8 @@ UsersModel.add = function add (username, password, callback) {
           geddy.model.UsersModel.save(userInstance, function (err, results) {
           //geddy.db.users.save(todo, function(err, docs){
             //console.log("RESULT IS :" + results);
-            console.log("SUCCESS");
+            console.log("Saved user instanc with error: " + err);
+            console.log("results are: " + results);
             var answerDict = {};
             answerDict.errCode = 1; //"SUCCESS"
             callback(answerDict);
