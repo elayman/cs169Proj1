@@ -81,8 +81,7 @@ tests = {
 	UsersModel.add('Greg', 'MyPassword!', function (answerDict) {
   		assert.equal(answerDict, {'errCode': 1});
   	});
-  },
-  
+  }
 };
 
 module.exports = tests;
