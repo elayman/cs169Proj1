@@ -151,3 +151,8 @@
 [Mon, 11 Feb 2013 07:08:16 GMT] INFO Server worker running in development on port 4000 with a PID of: 40148
 [Mon, 11 Feb 2013 07:08:16 GMT] DEBUG LOGGING STARTED ============================================
 [Mon, 11 Feb 2013 07:08:16 GMT] DEBUG ============================================================
+[Mon, 11 Feb 2013 07:12:11 GMT] INFO Code changed, killing 40148, cycling ...
+[Mon, 11 Feb 2013 07:12:11 GMT] INFO Creating 1 worker process.
+[Mon, 11 Feb 2013 07:12:11 GMT] INFO Server worker running in development on port 4000 with a PID of: 40166
+[Mon, 11 Feb 2013 07:12:11 GMT] DEBUG LOGGING STARTED ============================================
+[Mon, 11 Feb 2013 07:12:11 GMT] DEBUG ============================================================
