@@ -108,8 +108,8 @@ UsersModel.getCount = function exists (username, password, callback) {
 UsersModel.TESTAPI_resetFixture = function TESTAPI_resetFixture (callback) {
   geddy.model.UsersModel.all(function (err, result) {
     console.log("got all users models with error: " + err + " and result: " + result);
-    for (var userModel in result.rows){
-      geddy.UsersModel.remove(userModel.id);
+    for (var userModel in result){
+      geddy.model.UsersModel.remove(userModel.id);
     }
     callback({'errCode': null});
   });
