@@ -7,7 +7,7 @@ var UsersModel = function () {
   });
 
   this.adapter = 'postgres';
-  this.validatesLength('user', {max: '128'});
+  this.validatesLength('username', {max: '128'});
   this.validatesLength('password', {max: '128'});
 
   /*
