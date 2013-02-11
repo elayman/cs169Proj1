@@ -60,11 +60,19 @@ tests = {
   },
   'Test Model Login': function () {
 	UsersModel.login('Greg', 'MyPassword!', function (answerDict) {
+		console.log("login with answerDict: ");
+		for (var key in answerDict){
+			console.log(key + " : " + answerDict[key]);
+		}
   		assert.deepEqual(answerDict, {'errCode': 1, 'count': 2});
   	});
   },
   'Test Model Login Bad Credentials': function () {
 	UsersModel.login('Greg12392', 'MyPassword!', function (answerDict) {
+		console.log("login with answerDict: ");
+		for (var key in answerDict){
+			console.log(key + " : " + answerDict[key]);
+		}
   		assert.deepEqual(answerDict, {'errCode': -1});
   	});
   }
