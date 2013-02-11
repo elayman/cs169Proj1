@@ -71,7 +71,6 @@ tests = {
 	  		assert.equal(answerDict, {'errCode': -1});
 	  	});
 	}
-  }
  //  'Test Model TESTAPI_resetFixture': function () {
 	// UsersModel.TESTAPI_resetFixture(function (answerDict) {
 	//   		assert.equal(answerDict, {'errCode': null});
