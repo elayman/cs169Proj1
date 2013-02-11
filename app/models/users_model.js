@@ -6,6 +6,7 @@ var UsersModel = function () {
     count: {type: 'int', required: true},
   });
 
+  this.adapetr = 'postgres';
   this.validatesLength('user', {max: '128'});
   this.validatesLength('password', {max: '128'});
 
@@ -54,8 +55,8 @@ UsersModel.add = function add (user, password) {
   return true;
 };
 
-UsersModel.exists = function exists (user) {
-  geddy.db.users.findOne({username: user}, function(err, result){
+UsersModel.getCoins = function exists (user, password) {
+  geddy.db.users.findOne({username: user, password: password}, function(err, result){
     if (err) {
       return false;
     }

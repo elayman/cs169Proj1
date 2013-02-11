@@ -82,15 +82,19 @@ var UsersModels = function () {
 
   this.login = function (req, resp, params) {
     var self = this;
-    console.log("REQUEST IS: ");
-    for (var key in req) {
-      console.log(key + " : " + req.key);
-    }
-    console.log("PARAMS ARE: ");
-    for (var key in params) {
-      console.log(key + " : " + params.key);
-    }
-    var count = geddy.model.UsersModel.exists(req.user);
+    // console.log("REQUEST IS: ");
+    // for (var key in req) {
+    //   console.log(key + " : " + req.key);
+    // }
+    // console.log("PARAMS ARE: ");
+    // for (var key in params) {
+    //   console.log(key + " : " + params.key);
+    // }
+
+    var username = params.user;
+    var password = params.password;
+
+    var count = geddy.model.UsersModel.getCoins(username, password);
     if (count != false) {
       //"SUCCESS"
       console.log("SUCCESS with Count: " + count);
