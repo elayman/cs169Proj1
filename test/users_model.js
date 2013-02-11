@@ -43,7 +43,7 @@ tests = {
 		for (var key in answerDict){
   			console.log(key + " : " + answerDict[key]);
   		}
-	  		assert.equal(answerDict, {'errCode': -4});
+	  		assert.equal(answerDict, {"errCode":-4});
 	  	});
   },
   'Test Model Add 129 Password': function () {
@@ -51,7 +51,7 @@ tests = {
 	  		for (var key in answerDict){
 	  			console.log(key + " : " + answerDict[key]);
 	  		}
-	  		assert.equal(answerDict, {'errCode': -4});
+	  		assert.equal(answerDict, {"errCode":-4});
 	  	});
   },
   'Test Model Login 10 times': function () {
