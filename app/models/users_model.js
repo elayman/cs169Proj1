@@ -145,14 +145,15 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
     var failedTests = "";
     for (var key in tests){
       console.log("running test: " + key);
-      var succeeded = tests[key]();
-      if (succeeded){
-        successCount += 1;
-      } else {
-        // console.log("Got exception: " + exception);
-        failCount += 1;
-        failedTests += key + ": FAILED.    ";
-      }
+      tests[key](function (succeeded){
+        if (succeeded){
+          successCount += 1;
+        } else {
+          // console.log("Got exception: " + exception);
+          failCount += 1;
+          failedTests += key + ": FAILED.    ";
+        }
+      });
     }
     var answerDict = {};
     answerDict.totalTests = successCount + failCount;
