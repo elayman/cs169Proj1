@@ -69,7 +69,6 @@ UsersModel.exists = function exists (user) {
             return result.count + 1;
           }
         });
-      }
     } else{
       return false;
     }
