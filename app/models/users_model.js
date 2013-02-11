@@ -149,7 +149,7 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
     } catch(exception){
       // console.log("Got exception: " + exception);
       failCount += 1;
-      failedTests += key + ": FAILED \n");
+      failedTests += key + ": FAILED \n";
     }
   }
   var answerDict = {};
