@@ -64,7 +64,11 @@ tests = {
 		for (var key in answerDict){
 			console.log(key + " : " + answerDict[key]);
 		}
-  		assert.deepEqual(answerDict, {'errCode': 1, 'count': 2});
+		try{
+	  		assert.deepEqual(answerDict, {'errCode': 1, 'count': 2});
+	  	}catch (exc){
+	  		console.log("exception: " + exc);
+	  	}
   	});
   },
   'Test Model Login Bad Credentials': function () {
