@@ -89,12 +89,14 @@ UsersModel.getCount = function exists (username, password, callback) {
     }
     // if we already have the user, update count
     if (result) {
-      console.log("WE GOT A USER");
+      console.log("WE GOT A USER: " + result);
       result.updateProperties({count: result.count + 1});
       result.save(function(err, data) {
         if (err) {
+          console.log("got an error updating count: " + err);
           callback(false);
         } else {
+          console.log("updated count + 1");
           callback(result.count + 1);
         }
       });
