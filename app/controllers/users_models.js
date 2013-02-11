@@ -83,7 +83,7 @@ var UsersModels = function () {
   this.login = function (req, resp, params) {
     var self = this;
 
-    var count = UsersModel.exists(req.body.user);
+    var count = geddy.model.UsersModel.exists(req.body.user);
     if (count != false) {
       //"SUCCESS"
       console.log("SUCCESS with Count: " + count);
@@ -111,35 +111,45 @@ var UsersModels = function () {
   //   });
   // };
 
-  this.update = function (req, resp, params) {
+  this.resetFixture = function resetFixture (req, resp, params) {
     var self = this;
 
-    geddy.model.UsersModel.first(params.id, function(err, usersModel) {
-      usersModel.updateProperties(params);
-
-      usersModel.save(function(err, data) {
-        if (err) {
-          params.errors = err;
-          self.transfer('edit');
-        } else {
-          self.redirect({controller: self.name});
-        }
-      });
-    });
   };
 
-  this.destroy = function (req, resp, params) {
+  this.unitTests = function unitTests (req, resp, params) {
     var self = this;
 
-    geddy.model.UsersModel.remove(params.id, function(err) {
-      if (err) {
-        params.errors = err;
-        self.transfer('edit');
-      } else {
-        self.redirect({controller: self.name});
-      }
-    });
   };
+
+  // this.update = function (req, resp, params) {
+  //   var self = this;
+
+  //   geddy.model.UsersModel.first(params.id, function(err, usersModel) {
+  //     usersModel.updateProperties(params);
+
+  //     usersModel.save(function(err, data) {
+  //       if (err) {
+  //         params.errors = err;
+  //         self.transfer('edit');
+  //       } else {
+  //         self.redirect({controller: self.name});
+  //       }
+  //     });
+  //   });
+  // };
+
+  // this.destroy = function (req, resp, params) {
+  //   var self = this;
+
+  //   geddy.model.UsersModel.remove(params.id, function(err) {
+  //     if (err) {
+  //       params.errors = err;
+  //       self.transfer('edit');
+  //     } else {
+  //       self.redirect({controller: self.name});
+  //     }
+  //   });
+  // };
 
 };
 
