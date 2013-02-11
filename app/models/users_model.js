@@ -122,7 +122,7 @@ UsersModel.TESTAPI_resetFixture = function TESTAPI_resetFixture (callback) {
 UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
   var successCount = 0;
   var failCount = 0;
-  for (var key in geddy.test.tests){
+  for (var key in geddy.tests){
     console.log("running test: " + key);
     try{
       geddy.test.tests[key]();
