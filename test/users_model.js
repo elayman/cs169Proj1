@@ -58,20 +58,20 @@ tests = {
   		assert.deepEqual(answerDict, {"errCode": -4});
   	});
   }
- //  'Test Model Login 10 times': function () {
- //  	// var x = 2;
- //  	// while (x<10){
-	// UsersModel.login('Greg', 'MyPassword!', function (answerDict) {
-	//   		assert.equal(answerDict, {'errCode': 1, 'count': 2});
-	//   	});
-	// // }
- //  },
- //  'Test Model Login Bad Credentials': function () {
-	// UsersModel.login('Greg12392', 'MyPassword!', function (answerDict) {
-	//   		assert.equal(answerDict, {'errCode': -1});
-	//   	});
+  'Test Model Login 10 times': function () {
+  	// var x = 2;
+  	// while (x<10){
+	UsersModel.login('Greg', 'MyPassword!', function (answerDict) {
+	  		assert.equal(answerDict, {'errCode': 1, 'count': 2});
+	  	});
 	// }
- //  },
+  },
+  'Test Model Login Bad Credentials': function () {
+	UsersModel.login('Greg12392', 'MyPassword!', function (answerDict) {
+	  		assert.equal(answerDict, {'errCode': -1});
+	  	});
+	}
+  },
  //  'Test Model TESTAPI_resetFixture': function () {
 	// UsersModel.TESTAPI_resetFixture(function (answerDict) {
 	//   		assert.equal(answerDict, {'errCode': null});
