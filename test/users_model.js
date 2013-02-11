@@ -68,6 +68,7 @@ tests = {
 	  		assert.deepEqual(answerDict, {'errCode': 1, 'count': 2});
 	  	}catch (exc){
 	  		console.log("exception: " + exc);
+	  		throw "Failed Test Model Login";
 	  	}
   	});
   },
