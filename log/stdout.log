@@ -113,3 +113,10 @@
 [Mon, 11 Feb 2013 06:49:39 GMT] INFO Server worker running in development on port 4000 with a PID of: 39874
 [Mon, 11 Feb 2013 06:49:39 GMT] DEBUG LOGGING STARTED ============================================
 [Mon, 11 Feb 2013 06:49:39 GMT] DEBUG ============================================================
+[Mon, 11 Feb 2013 06:51:49 GMT] INFO Code changed, killing 39874, cycling ...
+[Mon, 11 Feb 2013 06:51:49 GMT] INFO Creating 1 worker process.
+[Mon, 11 Feb 2013 06:51:49 GMT] INFO Code changed, killing 39887, cycling ...
+[Mon, 11 Feb 2013 06:51:49 GMT] INFO Creating 1 worker process.
+[Mon, 11 Feb 2013 06:51:49 GMT] INFO Server worker running in development on port 4000 with a PID of: 39888
+[Mon, 11 Feb 2013 06:51:49 GMT] DEBUG LOGGING STARTED ============================================
+[Mon, 11 Feb 2013 06:51:49 GMT] DEBUG ============================================================

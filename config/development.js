@@ -29,10 +29,10 @@ var config = {
   }
 , db: {
     postgres: {
-      user: process.env.USER
-    , database: process.env.USER
-    , password: null
-    , host: process.env.DATABASE_URL
+      user: 'kdrcnkhkmnbymb'
+    , database: 'd1s596arbdhhmi'
+    , password: '3VubKJSfU8rJS8asnlRPFXwbd9'
+    , host: 'ec2-54-243-235-7.compute-1.amazonaws.com'
     , port: 5432
     }
   }
