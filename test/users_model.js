@@ -58,7 +58,7 @@ tests = {
   	// var x = 2;
   	// while (x<10){
 		UsersModel.getCount('Greg', 'MyPassword!', function (count) {
-				assert(count && count == 2);
+				assert(count != false && count == 2);
 		  		//assert.equal(count, 2);
 		  	});
 	// }
