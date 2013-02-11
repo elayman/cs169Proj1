@@ -35,7 +35,7 @@ var UsersModel = function () {
 UsersModel.add = function add (user, password) {
   var count = 0;
   //Add to database
-  geddy.db.user_models.findOne({username: user}, function(err, result){
+  geddy.db.users.findOne({username: user}, function(err, result){
     if (err) {
       return callback(err, null);
     }
@@ -46,7 +46,7 @@ UsersModel.add = function add (user, password) {
     // if we don't already have the to do item, save a new one
     else {
       todo.saved = true;
-      geddy.db.todos.save(todo, function(err, docs){
+      geddy.db.users.save(todo, function(err, docs){
         return callback(err, docs);
       });
     }
@@ -55,7 +55,7 @@ UsersModel.add = function add (user, password) {
 };
 
 UsersModel.exists = function exists (user) {
-  geddy.db.user_models.findOne({username: user}, function(err, result){
+  geddy.db.users.findOne({username: user}, function(err, result){
     if (err) {
       return false;
     }
