@@ -127,7 +127,7 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
     try{
       geddy.test.tests[key]();
       successCount += 1;
-    } catch(Exception e){
+    } catch(exception){
       failCount += 1;
     }
   }
