@@ -66,16 +66,17 @@ tests = {
 	UsersModel.login('Greg12392', 'MyPassword!', function (answerDict) {
 	  		assert.equal(answerDict, {'errCode': -1});
 	  	});
-  },
-  'Test Model TESTAPI_resetFixture': function () {
-	UsersModel.TESTAPI_resetFixture(function (answerDict) {
-	  		assert.equal(answerDict, {'errCode': null});
-	  	});
-	//Add user previously added
-	UsersModel.add('Greg', 'MyPassword!', function (answerDict) {
-  		assert.equal(answerDict, {'errCode': 1, 'count': 1});
-  	});
-  }
+	}
+ //  },
+ //  'Test Model TESTAPI_resetFixture': function () {
+	// UsersModel.TESTAPI_resetFixture(function (answerDict) {
+	//   		assert.equal(answerDict, {'errCode': null});
+	//   	});
+	// //Add user previously added
+	// UsersModel.add('Greg', 'MyPassword!', function (answerDict) {
+ //  		assert.equal(answerDict, {'errCode': 1, 'count': 1});
+ //  	});
+ //  }
   // },
 // 'Test Controller TESTAPI_resetFixture': function () {
 // 	var req = {'stuff': 'moreStuff'};
