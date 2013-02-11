@@ -138,3 +138,16 @@
 [Mon, 11 Feb 2013 06:58:50 GMT] DEBUG ============================================================
 [Mon, 11 Feb 2013 06:59:05 GMT] INFO Code changed, killing 39991, cycling ...
 [Mon, 11 Feb 2013 06:59:05 GMT] INFO Creating 1 worker process.
+[Mon, 11 Feb 2013 06:59:05 GMT] INFO Server worker running in development on port 4000 with a PID of: 39994
+[Mon, 11 Feb 2013 06:59:05 GMT] DEBUG LOGGING STARTED ============================================
+[Mon, 11 Feb 2013 06:59:05 GMT] DEBUG ============================================================
+[Mon, 11 Feb 2013 07:04:30 GMT] INFO Code changed, killing 39994, cycling ...
+[Mon, 11 Feb 2013 07:04:30 GMT] INFO Creating 1 worker process.
+[Mon, 11 Feb 2013 07:04:31 GMT] INFO Server worker running in development on port 4000 with a PID of: 40136
+[Mon, 11 Feb 2013 07:04:31 GMT] DEBUG LOGGING STARTED ============================================
+[Mon, 11 Feb 2013 07:04:31 GMT] DEBUG ============================================================
+[Mon, 11 Feb 2013 07:08:16 GMT] INFO Code changed, killing 40136, cycling ...
+[Mon, 11 Feb 2013 07:08:16 GMT] INFO Creating 1 worker process.
+[Mon, 11 Feb 2013 07:08:16 GMT] INFO Server worker running in development on port 4000 with a PID of: 40148
+[Mon, 11 Feb 2013 07:08:16 GMT] DEBUG LOGGING STARTED ============================================
+[Mon, 11 Feb 2013 07:08:16 GMT] DEBUG ============================================================

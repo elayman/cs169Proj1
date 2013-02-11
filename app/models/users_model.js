@@ -54,6 +54,7 @@ UsersModel.add = function add (username, password, callback) {
         // if we already have the user, don't add another
         console.log("got error: " + err + " and result:" + result);
         if (result) {
+          console.log("ERR_USER_EXISTS");
           var answerDict = {};
           answerDict.errCode = -2; //"ERR_USER_EXISTS"
           callback(answerDict);
@@ -70,6 +71,7 @@ UsersModel.add = function add (username, password, callback) {
             console.log("results are: " + results);
             var answerDict = {};
             answerDict.errCode = 1; //"SUCCESS"
+            console.log("SUCCESS");
             callback(answerDict);
             //return callback(err, docs);
           });
@@ -104,6 +106,7 @@ UsersModel.getCount = function exists (username, password, callback) {
 
 UsersModel.TESTAPI_resetFixture = function TESTAPI_resetFixture (callback) {
   geddy.UsersModel.all(function (err, result) {
+    console.log("got all users models with error: " + err + " and result: " + result);
     for (var userModel in result.rows){
       geddy.UsersModel.remove(userModel.id);
     }
