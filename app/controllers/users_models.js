@@ -102,16 +102,8 @@ var UsersModels = function () {
     var username = params.user;
     var password = params.password;
 
-    geddy.model.UsersModel.getCount(username, password, function (count) {
-      if (count != false) {
-        //"SUCCESS"
-        console.log("SUCCESS with Count: " + count);
-        self.respond({errCode: 1, count: count});
-      } else {
-        //"ERR_BAD_CREDENTIALS"
-        console.log("ERR_BAD_CREDENTIALS ");
-        self.respond({errCode: -1})
-      }
+    geddy.model.UsersModel.login(username, password, function (answerDict) {
+      self.respond(answerDict);
     });
   };
 

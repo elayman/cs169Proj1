@@ -82,11 +82,15 @@ UsersModel.add = function add (username, password, callback) {
     }
 };
 
-UsersModel.getCount = function exists (username, password, callback) {
+UsersModel.login = function exists (username, password, callback) {
   geddy.model.UsersModel.load({username: username, password: password}, function (err, result){
   //geddy.db.users.findOne({username: user, password: password}, function(err, result){
     if (err) {
-      callback(false);
+      //"ERR_BAD_CREDENTIALS"
+      console.log("ERR_BAD_CREDENTIALS ");
+      var answerDict = {};
+      answerDict.errCode = -1;
+      callback(answerDict);
     }
     // if we already have the user, update count
     if (result) {
@@ -95,15 +99,28 @@ UsersModel.getCount = function exists (username, password, callback) {
       result.save(function(err, data) {
         if (err) {
           console.log("got an error updating count: " + err);
-          callback(false);
+          //"ERR_BAD_CREDENTIALS"
+          console.log("ERR_BAD_CREDENTIALS ");
+          var answerDict = {};
+          answerDict.errCode = -1;
+          callback(answerDict);
         } else {
           console.log("updated count + 1 with data: " + data);
-          callback(data.count);
+          //"SUCCESS"
+          console.log("SUCCESS with Count: " + data.count);
+          var answerDict = {};
+          answerDict.errCode = 1;
+          answerDict.count = data.count;
+          callback(answerDict);
         }
       });
     } else{
       //No user exists with this login
-      callback(false);
+      //"ERR_BAD_CREDENTIALS"
+      console.log("ERR_BAD_CREDENTIALS ");
+      var answerDict = {};
+      answerDict.errCode = -1;
+      callback(answerDict);
     }
   });
 };
