@@ -75,18 +75,19 @@ tests = {
 	UsersModel.add('Greg', 'MyPassword!', function (answerDict) {
   		assert.equal(answerDict, {'errCode': 1, 'count': 1});
   	});
-  },
-'Test Controller TESTAPI_resetFixture': function () {
-	var req = {'stuff': 'moreStuff'};
-	var resp = {'stuff': 'moreStuff'};
-	var params = {'':''};
-	var answerDict = UsersController.resetFixture(req, resp, params);
-	assert.equal(answerDict, {'errCode': null});
-	//Add user previously added
-	UsersModel.add('Greg', 'MyPassword!', function (answerDict) {
-  		assert.equal(answerDict, {'errCode': 1});
-  	});
   }
+  // },
+// 'Test Controller TESTAPI_resetFixture': function () {
+// 	var req = {'stuff': 'moreStuff'};
+// 	var resp = {'stuff': 'moreStuff'};
+// 	var params = {'':''};
+// 	var answerDict = UsersController.resetFixture(req, resp, params);
+// 	assert.equal(answerDict, {'errCode': null});
+// 	//Add user previously added
+// 	UsersModel.add('Greg', 'MyPassword!', function (answerDict) {
+//   		assert.equal(answerDict, {'errCode': 1});
+//   	});
+//   }
 };
 
 module.exports = tests;
