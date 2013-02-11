@@ -64,7 +64,7 @@ tests = {
   },
   'Test Model Login Bad Credentials': function () {
 	UsersModel.login('Greg12392', 'MyPassword!', function (answerDict) {
-	  		assert.equal(answerDict, {'errCode:' -1});
+	  		assert.equal(answerDict, {'errCode': -1});
 	  	});
   },
   'Test Model TESTAPI_resetFixture': function () {
