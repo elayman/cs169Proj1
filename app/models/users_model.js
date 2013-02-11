@@ -137,30 +137,33 @@ UsersModel.TESTAPI_resetFixture = function TESTAPI_resetFixture (callback) {
 };
 
 UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
-  var successCount = 0;
-  var failCount = 0;
-  var tests = require('../../test/users_model.js');
-  var failedTests = "";
-  for (var key in tests){
-    // console.log("running test: " + key);
-    try{
-      tests[key]();
-      successCount += 1;
-    } catch(exception){
-      // console.log("Got exception: " + exception);
-      failCount += 1;
-      failedTests += key + ": FAILED.    ";
+  //Remove all database entries
+  UsersModel.TESTAPI_resetFixture(function (nothingImportant){
+    var successCount = 0;
+    var failCount = 0;
+    var tests = require('../../test/users_model.js');
+    var failedTests = "";
+    for (var key in tests){
+      // console.log("running test: " + key);
+      try{
+        tests[key]();
+        successCount += 1;
+      } catch(exception){
+        // console.log("Got exception: " + exception);
+        failCount += 1;
+        failedTests += key + ": FAILED.    ";
+      }
     }
-  }
-  var answerDict = {};
-  answerDict.totalTests = successCount + failCount;
-  answerDict.nrFailed = failCount;
-  if (failCount == 0){
-    answerDict.output = "All tests passed";
-  } else {
-    answerDict.output = failedTests;
-  }
-  callback(answerDict);
+    var answerDict = {};
+    answerDict.totalTests = successCount + failCount;
+    answerDict.nrFailed = failCount;
+    if (failCount == 0){
+      answerDict.output = "All tests passed";
+    } else {
+      answerDict.output = failedTests;
+    }
+    callback(answerDict);
+  });
 };
 /*
 // Can also define them on the prototype
