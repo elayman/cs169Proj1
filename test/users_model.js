@@ -40,13 +40,17 @@ tests = {
   },
   'Test Model Add Empty Password': function () {
 	UsersModel.add('Greg6', null, function (answerDict) {
-		console.log("answerDict is: " + answerDict);
+		for (var key in answerDict){
+  			console.log(key + " : " + answerDict[key]);
+  		}
 	  		assert.equal(answerDict, {'errCode': -4});
 	  	});
   },
   'Test Model Add 129 Password': function () {
 	UsersModel.add('Greg7', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', function (answerDict) {
-	  		console.log("answerDict is: " + answerDict);
+	  		for (var key in answerDict){
+	  			console.log(key + " : " + answerDict[key]);
+	  		}
 	  		assert.equal(answerDict, {'errCode': -4});
 	  	});
   },
