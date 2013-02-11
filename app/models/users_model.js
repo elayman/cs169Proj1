@@ -62,7 +62,7 @@ UsersModel.add = function add (username, password, callback) {
         // if we don't already have the user model, save a new one
         else {
           // todo.saved = true;
-          var userInstance = geddy.model.UsersModel.create({username: username, password: password, count: 0});
+          var userInstance = geddy.model.UsersModel.create({username: username, password: password, count: 1});
           console.log("userInstance created: " + userInstance);
           console.log("userInstance count: " + userInstance.count);
           geddy.model.UsersModel.save(userInstance, function (err, results) {
@@ -72,6 +72,7 @@ UsersModel.add = function add (username, password, callback) {
             console.log("results are: " + results);
             var answerDict = {};
             answerDict.errCode = 1; //"SUCCESS"
+            answerDict.count = 1;
             console.log("SUCCESS");
             callback(answerDict);
             //return callback(err, docs);
@@ -119,10 +120,20 @@ UsersModel.TESTAPI_resetFixture = function TESTAPI_resetFixture (callback) {
 };
 
 UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
-
+  var successCount = 0;
+  var failCount = 0;
+  for (var key in geddy.test.tests){
+    console.log("running test: " + key);
+    try{
+      geddy.test.tests[key]();
+      successCount += 1;
+    } catch(Exception e){
+      failCount += 1;
+    }
+  }
   var answerDict = {};
-  answerDict.totalTests = 1;
-  answerDict.nrFailed = 1;
+  answerDict.totalTests = successCount + failCount;
+  answerDict.nrFailed = failCount;
   answerDict.output = "Success";
   callback(answerDict);
 };

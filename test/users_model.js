@@ -6,7 +6,7 @@ var assert = require('assert')
 tests = {
   'Test Model Add': function () {
   	UsersModel.add('Greg', 'MyPassword!', function (answerDict) {
-  		assert.equal(answerDict, {'errCode': 1});
+  		assert.equal(answerDict, {'errCode': 1, 'count': 1});
   	});
   },
   'Test Model Add Same': function () {
@@ -16,7 +16,7 @@ tests = {
   },
   'Test Model Add Different': function () {
 	UsersModel.add('Greg2', 'MyPassword!', function (answerDict) {
-	  		assert.equal(answerDict, {'errCode': 1});
+	  		assert.equal(answerDict, {'errCode': 1, 'count': 1});
 	  	});
   },
   'Test Model Add Empty Username': function () {
@@ -50,7 +50,7 @@ tests = {
 	  	});
   },
   'Test Model Login 100 times': function () {
-  	var x = 1;
+  	var x = 2;
   	while (x<100){
 		UsersModel.getCount('Greg', 'MyPassword!', function (answerDict) {
 		  		assert.equal(answerDict, {'errCode': 1, 'count': x});
@@ -68,7 +68,7 @@ tests = {
 	  	});
 	//Add user previously added
 	UsersModel.add('Greg', 'MyPassword!', function (answerDict) {
-  		assert.equal(answerDict, {'errCode': 1});
+  		assert.equal(answerDict, {'errCode': 1, 'count': 1});
   	});
   },
 'Test Controller TESTAPI_resetFixture': function () {
