@@ -102,7 +102,7 @@ var UsersModels = function () {
     var username = params.user;
     var password = params.password;
 
-    geddy.model.UsersModel.getCoins(username, password, function (count) {
+    geddy.model.UsersModel.getCount(username, password, function (count) {
       if (count != false) {
         //"SUCCESS"
         console.log("SUCCESS with Count: " + count);
