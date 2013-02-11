@@ -108,7 +108,7 @@ UsersModel.TESTAPI_resetFixture = function TESTAPI_resetFixture (callback) {
   geddy.model.UsersModel.all(function (err, result) {
     console.log("got all users models with error: " + err + " and result: " + result);
     for (var userModel in result){
-      console.log("trying to remove id: " + userModel.id);
+      console.log("trying to remove userModel: " + userModel);
       geddy.model.UsersModel.remove(userModel.id);
     }
     callback({'errCode': null});
