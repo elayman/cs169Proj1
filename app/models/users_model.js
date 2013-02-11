@@ -6,7 +6,7 @@ var UsersModel = function () {
     count: {type: 'int', required: true},
   });
 
-  this.adapetr = 'postgres';
+  this.adapter = 'postgres';
   this.validatesLength('user', {max: '128'});
   this.validatesLength('password', {max: '128'});
 
