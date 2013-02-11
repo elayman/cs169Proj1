@@ -123,6 +123,7 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
   var successCount = 0;
   var failCount = 0;
   var tests = require('./users_model.js');
+  console.log("found tests: " + tests);
   for (var key in tests){
     console.log("running test: " + key);
     try{
