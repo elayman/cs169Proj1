@@ -55,12 +55,12 @@ tests = {
 	  	});
   },
   'Test Model Login 10 times': function () {
-  	var x = 2;
-  	while (x<10){
+  	// var x = 2;
+  	// while (x<10){
 		UsersModel.getCount('Greg', 'MyPassword!', function (count) {
-		  		assert.equal(count, x);
+		  		assert.equal(count, 2);
 		  	});
-	}
+	// }
   },
   'Test Model Login Bad Credentials': function () {
 	UsersModel.getCount('Greg12392', 'MyPassword!', function (count) {
