@@ -10,6 +10,7 @@ tests = {
   },
   'Test Model Add Same': function () {
 	UsersModel.add('Greg', 'MyPassword!', function (answerDict) {
+		console.log("add same with errCode: " + answerDict.errCode);
   		assert.deepEqual(answerDict, {'errCode': -2});
   	});
   },
