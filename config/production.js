@@ -40,11 +40,13 @@ var config = {
   }
 , db: {
     postgres: {
-      //user: process.env.USER
-      user: '//kdrcnkhkmnbymb'
+      user: process.env.USER
+      //user: '//kdrcnkhkmnbymb'
     , database: process.env.USER
-    , password: '3VubKJSfU8rJS8asnlRPFXwbd9'
-    , host: process.env.DATABASE_URL
+    //, password: '3VubKJSfU8rJS8asnlRPFXwbd9'
+    , password: null
+    //, host: process.env.DATABASE_URL
+    , host: null
     , port: 5432
     }
   }
