@@ -123,13 +123,13 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
   var successCount = 0;
   var failCount = 0;
   var tests = require('../../test/users_model.js');
-  console.log("found tests: " + tests);
   for (var key in tests){
     console.log("running test: " + key);
     try{
       geddy.test.tests[key]();
       successCount += 1;
     } catch(exception){
+      console.log("Got exception: " + exception);
       failCount += 1;
     }
   }
