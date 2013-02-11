@@ -122,7 +122,7 @@ UsersModel.TESTAPI_resetFixture = function TESTAPI_resetFixture (callback) {
 UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
   var successCount = 0;
   var failCount = 0;
-  var tests = require('./users_models.js');
+  var tests = require('./test/users_model.js');
   for (var key in tests){
     console.log("running test: " + key);
     try{
