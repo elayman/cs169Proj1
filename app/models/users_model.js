@@ -64,12 +64,12 @@ UsersModel.exists = function exists (user) {
       result.updateProperties({count: result.count + 1});
         result.save(function(err, data) {
           if (err) {
-
+            return false;
           } else {
             return result.count + 1;
           }
         });
-      });
+      }
     } else{
       return false;
     }
