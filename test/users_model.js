@@ -1,7 +1,6 @@
 var assert = require('assert')
   , tests
-  , UsersModel = geddy.model.UsersModel
-  , UsersController = geddy.controller.UsersModels;
+  , UsersModel = geddy.model.UsersModel;
 
 tests = {
   'Test Model Add': function () {
