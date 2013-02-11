@@ -17,7 +17,7 @@
 */
 
 var config = {
-  detailedErrors: true
+  detailedErrors: false
 , hostname: '0.0.0.0'
 , port: process.env.PORT
 /*, model: {
@@ -44,7 +44,7 @@ var config = {
     , user: process.env.USER
     , database: process.env.USER
     , password: null
-    , host: null
+    , host: process.env.DATABASE_URL
     , port: 5432
     }
   }
