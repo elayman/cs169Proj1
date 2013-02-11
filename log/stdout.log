@@ -68,3 +68,23 @@
 [Mon, 11 Feb 2013 06:27:52 GMT] INFO Server worker running in development on port 4000 with a PID of: 39561
 [Mon, 11 Feb 2013 06:27:52 GMT] DEBUG LOGGING STARTED ============================================
 [Mon, 11 Feb 2013 06:27:52 GMT] DEBUG ============================================================
+[Mon, 11 Feb 2013 06:30:37 GMT] INFO Code changed, killing 39561, cycling ...
+[Mon, 11 Feb 2013 06:30:37 GMT] INFO Creating 1 worker process.
+[Mon, 11 Feb 2013 06:30:37 GMT] INFO Server worker running in development on port 4000 with a PID of: 39578
+[Mon, 11 Feb 2013 06:30:37 GMT] DEBUG LOGGING STARTED ============================================
+[Mon, 11 Feb 2013 06:30:37 GMT] DEBUG ============================================================
+[Mon, 11 Feb 2013 06:32:42 GMT] INFO Code changed, killing 39578, cycling ...
+[Mon, 11 Feb 2013 06:32:42 GMT] INFO Creating 1 worker process.
+[Mon, 11 Feb 2013 06:32:43 GMT] INFO Server worker running in development on port 4000 with a PID of: 39590
+[Mon, 11 Feb 2013 06:32:43 GMT] DEBUG LOGGING STARTED ============================================
+[Mon, 11 Feb 2013 06:32:43 GMT] DEBUG ============================================================
+[Mon, 11 Feb 2013 06:36:03 GMT] INFO Code changed, killing 39590, cycling ...
+[Mon, 11 Feb 2013 06:36:03 GMT] INFO Creating 1 worker process.
+[Mon, 11 Feb 2013 06:36:03 GMT] INFO Server worker running in development on port 4000 with a PID of: 39601
+[Mon, 11 Feb 2013 06:36:03 GMT] DEBUG LOGGING STARTED ============================================
+[Mon, 11 Feb 2013 06:36:03 GMT] DEBUG ============================================================
+[Mon, 11 Feb 2013 06:37:53 GMT] INFO Code changed, killing 39601, cycling ...
+[Mon, 11 Feb 2013 06:37:53 GMT] INFO Creating 1 worker process.
+[Mon, 11 Feb 2013 06:37:53 GMT] INFO Server worker running in development on port 4000 with a PID of: 39624
+[Mon, 11 Feb 2013 06:37:53 GMT] DEBUG LOGGING STARTED ============================================
+[Mon, 11 Feb 2013 06:37:53 GMT] DEBUG ============================================================

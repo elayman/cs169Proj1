@@ -29,8 +29,7 @@ var config = {
   }
 , db: {
     postgres: {
-      dbname: 'users_models'
-    , user: process.env.USER
+      user: process.env.USER
     , database: process.env.USER
     , password: null
     , host: process.env.DATABASE_URL

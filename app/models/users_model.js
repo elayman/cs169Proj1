@@ -61,7 +61,7 @@ UsersModel.add = function add (username, password, callback) {
         // if we don't already have the user model, save a new one
         else {
           // todo.saved = true;
-          userInstance = geddy.model.UsersModel.create({user: username, password: password, count: 0});
+          var userInstance = geddy.model.UsersModel.create({user: username, password: password, count: 0});
           console.log("userInstance created: " + userInstance);
           geddy.model.UsersModel.save(userInstance, function (err, results) {
           //geddy.db.users.save(todo, function(err, docs){
@@ -77,7 +77,7 @@ UsersModel.add = function add (username, password, callback) {
     }
 };
 
-UsersModel.getCoins = function exists (username, password, callback) {
+UsersModel.getCount = function exists (username, password, callback) {
   geddy.model.UsersModel.load({user: username, password: password}, function (err, result){
   //geddy.db.users.findOne({username: user, password: password}, function(err, result){
     if (err) {
