@@ -35,7 +35,7 @@ tests = {
   },
   'Test Model Add Empty Password': function () {
 	UsersModel.add('Greg5', '', function (answerDict) {
-	  		assert.equal(answerDict, {"errCode":-4});
+	  		assert.equal(answerDict, {"errCode": -4});
 	  	});
   },
   'Test Model Add Empty Password': function () {
@@ -43,7 +43,7 @@ tests = {
 		for (var key in answerDict){
   			console.log(key + " : " + answerDict[key]);
   		}
-	  		assert.equal(answerDict, {"errCode":-4});
+	  		assert.equal(answerDict, {"errCode": -4});
 	  	});
   },
   'Test Model Add 129 Password': function () {
@@ -51,15 +51,15 @@ tests = {
 	  		for (var key in answerDict){
 	  			console.log(key + " : " + answerDict[key]);
 	  		}
-	  		assert.equal(answerDict, {"errCode":-4});
+	  		assert.equal(answerDict, {"errCode": -4});
 	  	});
   },
   'Test Model Login 10 times': function () {
   	// var x = 2;
   	// while (x<10){
-		UsersModel.login('Greg', 'MyPassword!', function (answerDict) {
-		  		assert.equal(answerDict, {'errCode': 1, 'count': 2});
-		  	});
+	UsersModel.login('Greg', 'MyPassword!', function (answerDict) {
+	  		assert.equal(answerDict, {'errCode': 1, 'count': 2});
+	  	});
 	// }
   },
   'Test Model Login Bad Credentials': function () {
