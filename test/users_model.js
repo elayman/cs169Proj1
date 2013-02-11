@@ -13,33 +13,63 @@ tests = {
 		console.log("add first same with errCode: " + answerDict.errCode);
 		UsersModel.add('Bob', 'MyPassword!', function (answerDict) {
 			console.log("add second same with errCode: " + answerDict.errCode);
-	  		assert.deepEqual(answerDict, {'errCode': -2});
+			try{
+	  			assert.deepEqual(answerDict, {'errCode': -2});
+	  			return true;
+	  		}catch (exc){
+	  			return false;
+	  		}
 	  	});
   	});
   },
   'Test Model Add Different': function () {
 	UsersModel.add('Greg2', 'MyPassword!', function (answerDict) {
-  		assert.deepEqual(answerDict, {'errCode': 1, 'count': 1});
+  		try{
+  			assert.deepEqual(answerDict, {'errCode': 1, 'count': 1});
+  			return true;
+  		}catch (exc){
+  			return false;
+  		}
   	});
   },
   'Test Model Add Empty Username': function () {
 	UsersModel.add('', 'MyPassword!', function (answerDict) {
-  		assert.deepEqual(answerDict, {'errCode': -3});
+  		try{
+  			assert.deepEqual(answerDict, {'errCode': -3});
+  			return true;
+  		}catch (exc){
+  			return false;
+  		}
   	});
   },
   'Test Model Add Null Username': function () {
 	UsersModel.add(null, 'MyPassword!', function (answerDict) {
-  		assert.deepEqual(answerDict, {'errCode': -3});
+  		try{
+  			assert.deepEqual(answerDict, {'errCode': -3});
+  			return true;
+  		}catch (exc){
+  			return false;
+  		}
   	});
   },
   'Test Model Add 129 Username': function () {
 	UsersModel.add('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'MyPassword!', function (answerDict) {
-  		assert.deepEqual(answerDict, {'errCode': -3});
+  		try{
+  			assert.deepEqual(answerDict, {'errCode': -3});
+  			return true;
+  		}catch (exc){
+  			return false;
+  		}
   	});
   },
   'Test Model Add Empty Password': function () {
 	UsersModel.add('Greg5', '', function (answerDict) {
-  		assert.deepEqual(answerDict, {"errCode": -4});
+  		try{
+  			assert.deepEqual(answerDict, {"errCode": -4});
+  			return true;
+  		}catch (exc){
+  			return false;
+  		}
   	});
   },
   'Test Model Add Empty Password': function () {
@@ -47,7 +77,12 @@ tests = {
 		for (var key in answerDict){
   			console.log(key + " : " + answerDict[key]);
   		}
-	  		assert.deepEqual(answerDict, {"errCode": -4});
+	  		try{
+	  			assert.deepEqual(answerDict, {"errCode": -4});
+	  			return true;
+	  		}catch (exc){
+	  			return false;
+	  		}
 	  	});
   },
   'Test Model Add 129 Password': function () {
@@ -55,22 +90,31 @@ tests = {
   		for (var key in answerDict){
   			console.log(key + " : " + answerDict[key]);
   		}
-  		assert.deepEqual(answerDict, {"errCode": -4});
+  		try{
+  			assert.deepEqual(answerDict, {"errCode": -4});
+  			return true;
+  		}catch (exc){
+  			return false;
+  		}
   	});
   },
   'Test Model Login': function () {
-	UsersModel.login('Greg', 'MyPassword!', function (answerDict) {
-		console.log("login with answerDict: ");
-		for (var key in answerDict){
-			console.log(key + " : " + answerDict[key]);
-		}
-		try{
-	  		assert.deepEqual(answerDict, {'errCode': 1, 'count': 2});
-	  	}catch (exc){
-	  		console.log("exception: " + exc);
-	  		throw "Failed Test Model Login";
-	  	}
+  	UsersModel.add('Greg', 'MyPassword!', function (answerDict) {
+		UsersModel.login('Greg', 'MyPassword!', function (answerDict) {
+			console.log("login with answerDict: ");
+			for (var key in answerDict){
+				console.log(key + " : " + answerDict[key]);
+			}
+			try{
+		  		assert.deepEqual(answerDict, {'errCode': 1, 'count': 2});
+		  		return true;
+		  	}catch (exc){
+		  		console.log("exception: " + exc);
+		  		return false;
+		  	}
+	  	});
   	});
+
   },
   'Test Model Login Bad Credentials': function () {
 	UsersModel.login('Greg12392', 'MyPassword!', function (answerDict) {
@@ -78,7 +122,12 @@ tests = {
 		for (var key in answerDict){
 			console.log(key + " : " + answerDict[key]);
 		}
-  		assert.deepEqual(answerDict, {'errCode': -1});
+  		try{
+  			assert.deepEqual(answerDict, {'errCode': -1});
+  			return true;
+  		}catch (exc){
+  			return false;
+  		}
   	});
   }
  //  'Test Model TESTAPI_resetFixture': function () {

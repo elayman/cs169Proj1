@@ -144,11 +144,11 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
     var tests = require('../../test/users_model.js');
     var failedTests = "";
     for (var key in tests){
-      // console.log("running test: " + key);
-      try{
-        tests[key]();
+      console.log("running test: " + key);
+      var succeeded = tests[key]();
+      if (succeeded){
         successCount += 1;
-      } catch(exception){
+      } else {
         // console.log("Got exception: " + exception);
         failCount += 1;
         failedTests += key + ": FAILED.    ";
