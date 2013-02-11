@@ -17,7 +17,7 @@
 */
 
 var config = {
-  detailedErrors: false
+  detailedErrors: true
 , hostname: '0.0.0.0'
 , port: process.env.PORT
 /*, model: {
@@ -40,7 +40,7 @@ var config = {
   }
 , db: {
     postgres: {
-      dbname: 'users'
+      dbname: 'users_models'
     , user: process.env.USER
     , database: process.env.USER
     , password: null

@@ -1,4 +1,4 @@
-[Mon, 11 Feb 2013 05:33:25 GMT] INFO Server starting with config: {
+[Mon, 11 Feb 2013 05:33:05 GMT] INFO Server starting with config: {
   "environment": "development",
   "workers": 1,
   "port": 4000,
@@ -35,7 +35,7 @@
   },
   "db": {
     "postgres": {
-      "dbname": "users_models",
+      "dbname": "users",
       "user": "elayman",
       "database": "elayman",
       "password": null,
@@ -45,12 +45,12 @@
   },
   "secret": "S98Nr8sp7kMRzOqvFyfKsU4WyEvamFdC6zJ4EH2av4dD4r1XQ9msH6SFEjYOUHBjl6DkUZLAcwBX5Au7OeM76PoUw6HJXXODWHtb11QPrU3RhwOoauXHo385FtecbHAu"
 }
-[Mon, 11 Feb 2013 05:33:25 GMT] INFO Creating 1 worker process.
-[Mon, 11 Feb 2013 05:33:25 GMT] INFO Server worker running in development on port 4000 with a PID of: 38966
-[Mon, 11 Feb 2013 05:33:25 GMT] DEBUG LOGGING STARTED ============================================
-[Mon, 11 Feb 2013 05:33:25 GMT] DEBUG ============================================================
-[Mon, 11 Feb 2013 05:35:25 GMT] INFO Code changed, killing 38966, cycling ...
-[Mon, 11 Feb 2013 05:35:25 GMT] INFO Creating 1 worker process.
-[Mon, 11 Feb 2013 05:35:25 GMT] INFO Server worker running in development on port 4000 with a PID of: 38974
-[Mon, 11 Feb 2013 05:35:25 GMT] DEBUG LOGGING STARTED ============================================
-[Mon, 11 Feb 2013 05:35:25 GMT] DEBUG ============================================================
+[Mon, 11 Feb 2013 05:33:05 GMT] INFO Creating 1 worker process.
+[Mon, 11 Feb 2013 05:33:05 GMT] INFO Server worker running in development on port 4000 with a PID of: 38959
+[Mon, 11 Feb 2013 05:33:05 GMT] DEBUG LOGGING STARTED ============================================
+[Mon, 11 Feb 2013 05:33:05 GMT] DEBUG ============================================================
+[Mon, 11 Feb 2013 05:33:20 GMT] INFO Code changed, killing 38959, cycling ...
+[Mon, 11 Feb 2013 05:33:20 GMT] INFO Creating 1 worker process.
+[Mon, 11 Feb 2013 05:33:20 GMT] INFO Server worker running in development on port 4000 with a PID of: 38963
+[Mon, 11 Feb 2013 05:33:20 GMT] DEBUG LOGGING STARTED ============================================
+[Mon, 11 Feb 2013 05:33:20 GMT] DEBUG ============================================================
