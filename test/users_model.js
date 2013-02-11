@@ -57,7 +57,7 @@ tests = {
   		}
   		assert.deepEqual(answerDict, {"errCode": -4});
   	});
-  }
+  },
   'Test Model Login 10 times': function () {
   	// var x = 2;
   	// while (x<10){
