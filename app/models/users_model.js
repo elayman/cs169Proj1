@@ -140,7 +140,7 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
   var successCount = 0;
   var failCount = 0;
   var tests = require('../../test/users_model.js');
-  var failedTests = [];
+  var failedTests = "";
   for (var key in tests){
     // console.log("running test: " + key);
     try{
@@ -149,7 +149,7 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
     } catch(exception){
       // console.log("Got exception: " + exception);
       failCount += 1;
-      failedTests.append(key);
+      failedTests += key + ": FAILED \n");
     }
   }
   var answerDict = {};
@@ -158,11 +158,7 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
   if (failCount == 0){
     answerDict.output = "All tests passed";
   } else {
-    var failedTestsString = "";
-    for (var item in failedTests){
-      failedTestsString += failedTests[item] + ": FAILED \n";
-    }
-    answerDict.output = failedTestsString;
+    answerDict.output = failedTests;
   }
   callback(answerDict);
 };
