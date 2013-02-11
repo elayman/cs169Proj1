@@ -1,5 +1,6 @@
 var UsersModels = function () {
-  this.respondsWith = ['html', 'json', 'xml', 'js', 'txt'];
+  //this.respondsWith = ['html', 'json', 'xml', 'js', 'txt'];
+  this.respondsWith = ['json'];
 
   this.index = function (req, resp, params) {
     var self = this;
@@ -16,10 +17,10 @@ var UsersModels = function () {
   this.add = function (req, resp, params) {
     params.id = params.id || geddy.string.uuid(10);
 
-    console.log("params are: %j", params);
-    console.log("req is : %j", req);
+    //console.log("params are: %j", params);
+    //console.log("req is : %j", req);
 
-    console.log("request.body is :" + req.body);
+    //console.log("request.body is :" + req.body);
   
   // //Set response type
   // response.set('Content-Type', 'application/json');
@@ -67,20 +68,27 @@ var UsersModels = function () {
 
 
     var self = this
-      , usersModel = geddy.model.UsersModel.create(params);
-
-    usersModel.save(function(err, data) {
-      if (err) {
-        params.errors = err;
-        self.transfer('add');
-      } else {
-
-        self.redirect({controller: self.name});
+      //, usersModel = geddy.model.UsersModel.create(params);
+    geddy.model.UsersModel.add(params.user, params.password, function (answerDict) {
+      if (answerDict){
+        self.respond(answerDict);
+      } else{
+        self.respond({"DIDN'T WORK":"NOOOOO"});
       }
     });
+    
+    // usersModel.save(function(err, data) {
+    //   if (err) {
+    //     params.errors = err;
+    //     self.transfer('add');
+    //   } else {
+    //     self.redirect({controller: self.name});
+    //   }
+    // });
   };
 
   this.login = function (req, resp, params) {
+    params.id = params.id || geddy.string.uuid(10);
     var self = this;
     // console.log("REQUEST IS: ");
     // for (var key in req) {
@@ -94,16 +102,17 @@ var UsersModels = function () {
     var username = params.user;
     var password = params.password;
 
-    var count = geddy.model.UsersModel.getCoins(username, password);
-    if (count != false) {
-      //"SUCCESS"
-      console.log("SUCCESS with Count: " + count);
-      self.respond({errCode: 1, count: count});
-    } else {
-      //"ERR_BAD_CREDENTIALS"
-      console.log("ERR_BAD_CREDENTIALS " + req);
-      self.respond({errCode: -1})
-    }
+    geddy.model.UsersModel.getCoins(username, password, function (count) {
+      if (count != false) {
+        //"SUCCESS"
+        console.log("SUCCESS with Count: " + count);
+        self.respond({errCode: 1, count: count});
+      } else {
+        //"ERR_BAD_CREDENTIALS"
+        console.log("ERR_BAD_CREDENTIALS ");
+        self.respond({errCode: -1})
+      }
+    });
   };
 
   // this.show = function (req, resp, params) {
@@ -124,12 +133,16 @@ var UsersModels = function () {
 
   this.resetFixture = function resetFixture (req, resp, params) {
     var self = this;
-
+    geddy.model.UsersModel.TESTAPI_resetFixture(function (answerDict) {
+      self.respond(answerDict);
+    });
   };
 
   this.unitTests = function unitTests (req, resp, params) {
     var self = this;
-
+    geddy.model.UsersModel.TESTAPI_unitTests(function (answerDict) {
+      self.respond(answerDict);
+    });
   };
 
   // this.update = function (req, resp, params) {

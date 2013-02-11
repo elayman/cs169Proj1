@@ -1,1 +1,9 @@
-curl -X POST -H "Content-Type: application/json" --data '{"user": "Bob", "password" : 125}' http://stark-falls-8805.herokuapp.com/users/login
+curl -X POST -H "Content-Type: application/json" --data '{"user": "Bob", "password" : "125"}' http://stark-falls-8805.herokuapp.com/users/login
+
+
+
+curl -X POST -H "Content-Type: application/json" --data '{"user": "Bob", "password" : "125"}' http://enigmatic-badlands-5168.herokuapp.com/users/add
+
+
+
+curl -X POST -H "Content-Type: application/json" --data '{"user": "Bob", "password" : "125"}' http://localhost:4000/users/add

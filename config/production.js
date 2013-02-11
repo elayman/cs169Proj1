@@ -40,7 +40,8 @@ var config = {
   }
 , db: {
     postgres: {
-      user: process.env.USER
+      dbname: 'users'
+    , user: process.env.USER
     , database: process.env.USER
     , password: null
     , host: null

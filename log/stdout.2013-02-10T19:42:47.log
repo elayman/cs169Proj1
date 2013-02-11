@@ -1,0 +1,51 @@
+[Mon, 11 Feb 2013 03:42:09 GMT] INFO Server starting with config: {
+  "environment": "development",
+  "workers": 1,
+  "port": 4000,
+  "spdy": null,
+  "ssl": null,
+  "debug": true,
+  "rotateWorkers": false,
+  "rotationWindow": 7200000,
+  "rotationTimeout": 300000,
+  "logDir": "/Users/elayman/Documents/CS169/Geddy-Proj1/proj1/log",
+  "gracefulShutdownTimeout": 30000,
+  "heartbeatInterval": 5000,
+  "heartbeatWindow": 20000,
+  "staticFilePath": "/Users/elayman/Documents/CS169/Geddy-Proj1/proj1/public",
+  "sessions": {
+    "store": "memory",
+    "key": "sid",
+    "expiry": 1209600
+  },
+  "cookieSessionKey": "sdata",
+  "metrics": null,
+  "i18n": {
+    "defaultLocale": "en-us",
+    "loadPaths": [
+      "/Users/elayman/Documents/CS169/Geddy-Proj1/proj1/config/locales"
+    ]
+  },
+  "hostname": "localhost",
+  "fullHostname": "http://localhost:4000",
+  "connectCompatibility": false,
+  "detailedErrors": true,
+  "model": {
+    "defaultAdapter": "postgres"
+  },
+  "db": {
+    "postgres": {
+      "dbname": "users",
+      "user": "elayman",
+      "database": "elayman",
+      "password": null,
+      "host": null,
+      "port": 5432
+    }
+  },
+  "secret": "S98Nr8sp7kMRzOqvFyfKsU4WyEvamFdC6zJ4EH2av4dD4r1XQ9msH6SFEjYOUHBjl6DkUZLAcwBX5Au7OeM76PoUw6HJXXODWHtb11QPrU3RhwOoauXHo385FtecbHAu"
+}
+[Mon, 11 Feb 2013 03:42:09 GMT] INFO Creating 1 worker process.
+[Mon, 11 Feb 2013 03:42:09 GMT] INFO Server worker running in development on port 4000 with a PID of: 38725
+[Mon, 11 Feb 2013 03:42:09 GMT] DEBUG LOGGING STARTED ============================================
+[Mon, 11 Feb 2013 03:42:09 GMT] DEBUG ============================================================

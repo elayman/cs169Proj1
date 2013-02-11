@@ -33,47 +33,90 @@ var UsersModel = function () {
 };
 
 
-UsersModel.add = function add (user, password) {
+UsersModel.add = function add (username, password, callback) {
   var count = 0;
-  //Add to database
-  geddy.db.UsersModels.findOne({username: user}, function(err, result){
-    if (err) {
-      return callback(err, null);
-    }
-    // if we already have the user, don't add another
-    if (result) {
-      return -3;
-    }
-    // if we don't already have the to do item, save a new one
-    else {
-      todo.saved = true;
-      geddy.db.UsersModels.save(todo, function(err, docs){
-        return callback(err, docs);
+  if (!username || username=="" || username.length >= 128) {
+      var answerDict = {};
+      answerDict.errCode = -3; //"ERR_BAD_USERNAME"
+      return answerDict;
+    } else if (!password || password=="" || password.length >= 128){
+      //Check if password is not empty and <128 chars
+      var answerDict = {};
+      answerDict.errCode = -4; //"ERR_BAD_PASSWORD"
+      callback(answerDict);
+    } else {
+      //Add to database
+      geddy.model.UsersModel.load({user: username}, function (err, result) {
+      //geddy.db.users.findOne({username: user}, function(err, result){
+        // if (err) {
+        //   return callback(err, null);
+        // }
+        // if we already have the user, don't add another
+        console.log("got error: " + err + " and result:" + result);
+        if (result) {
+          var answerDict = {};
+          answerDict.errCode = -2; //"ERR_USER_EXISTS"
+          callback(answerDict);
+        }
+        // if we don't already have the user model, save a new one
+        else {
+          // todo.saved = true;
+          userInstance = geddy.model.UsersModel.create({user: username, password: password, count: 0});
+          console.log("userInstance created: " + userInstance);
+          geddy.model.UsersModel.save(userInstance, function (err, results) {
+          //geddy.db.users.save(todo, function(err, docs){
+            //console.log("RESULT IS :" + results);
+            console.log("SUCCESS");
+            var answerDict = {};
+            answerDict.errCode = 1; //"SUCCESS"
+            callback(answerDict);
+            //return callback(err, docs);
+          });
+        }
       });
     }
-  });
-  return true;
 };
 
-UsersModel.getCoins = function exists (user, password) {
-  geddy.db.UsersModels.findOne({username: user, password: password}, function(err, result){
+UsersModel.getCoins = function exists (username, password, callback) {
+  geddy.model.UsersModel.load({user: username, password: password}, function (err, result){
+  //geddy.db.users.findOne({username: user, password: password}, function(err, result){
     if (err) {
-      return false;
+      callback(false);
     }
-    // if we already have the user, don't add another
+    // if we already have the user, update count
     if (result) {
+      console.log("WE GOT A USER");
       result.updateProperties({count: result.count + 1});
-        result.save(function(err, data) {
-          if (err) {
-            return false;
-          } else {
-            return result.count + 1;
-          }
-        });
+      result.save(function(err, data) {
+        if (err) {
+          callback(false);
+        } else {
+          callback(result.count + 1);
+        }
+      });
     } else{
-      return false;
+      //No user exists with this login
+      callback(false);
     }
   });
+};
+
+UsersModel.TESTAPI_resetFixture = function TESTAPI_resetFixture (callback) {
+  geddy.UsersModel.all(function (err, result) {
+    for (var userModel in result.rows){
+      geddy.UsersModel.remove(userModel.id);
+    }
+    callback({'errCode': null});
+  });
+};
+
+UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
+
+  var answerDict = {};
+  answerDict.totalTests = 1;
+  answerDict.nrFailed = 1;
+  answerDict.output = "Success";
+  callback(answerDict);
 };
 /*
 // Can also define them on the prototype

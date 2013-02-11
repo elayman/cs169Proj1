@@ -21,8 +21,21 @@ var config = {
 , debug: true
 , hostname: 'localhost'
 , port: 4000
+// , model: {
+//     defaultAdapter: 'memory'
+//   }
 , model: {
-    defaultAdapter: 'memory'
+    defaultAdapter: 'postgres'
+  }
+, db: {
+    postgres: {
+      dbname: 'users'
+    , user: process.env.USER
+    , database: process.env.USER
+    , password: null
+    , host: null
+    , port: 5432
+    }
   }
 , sessions: {
     store: 'memory'
