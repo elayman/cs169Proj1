@@ -9,9 +9,12 @@ tests = {
   	});
   },
   'Test Model Add Same': function () {
-	UsersModel.add('Greg', 'MyPassword!', function (answerDict) {
-		console.log("add same with errCode: " + answerDict.errCode);
-  		assert.deepEqual(answerDict, {'errCode': -2});
+  	UsersModel.add('Bob', 'MyPassword!', function (answerDict) {
+		console.log("add first same with errCode: " + answerDict.errCode);
+		UsersModel.add('Bob', 'MyPassword!', function (answerDict) {
+			console.log("add second same with errCode: " + answerDict.errCode);
+	  		assert.deepEqual(answerDict, {'errCode': -2});
+	  	});
   	});
   },
   'Test Model Add Different': function () {
