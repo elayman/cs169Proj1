@@ -122,7 +122,7 @@ tests = {
 
   },
   'Test Model Login Bad Credentials': function (callback) {
-	UsersModel.login('Greg12392', 'MyPassword!', function (answerDict) {
+	UsersModel.login('Greg12392', 'MyPassword!2', function (answerDict) {
 		console.log("login with answerDict: ");
 		for (var key in answerDict){
 			console.log(key + " : " + answerDict[key]);
