@@ -144,34 +144,48 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
     var tests = require('../../test/users_model.js');
     var failedTests = "";
 
-    var numberOfTests = 0;
-    for (var key in tests){
-      numberOfTests++;
-    }
+    // var numberOfTests = 0;
+    // for (var key in tests){
+    //   numberOfTests++;
+    // }
 
-    var currentTestNumber = 0;
-    var numberOfTestsCompleted = 0;
-    for (var key in tests){
-      currentTestNumber++;
-      while (numberOfTestsCompleted != currentTestNumber - 1){
-        //wait for previous test to finish
-      }
-      console.log("running test: " + key);
-      tests[key](function (succeeded){
-        console.log(key + " succeeded = " + succeeded);
-        if (succeeded){
-          successCount += 1;
-        } else {
-          // console.log("Got exception: " + exception);
-          failCount += 1;
-          failedTests += key + ": FAILED.    ";
-        }
-        numberOfTestsCompleted++;
-      });
-    }
-    while (numberOfTestsCompleted < numberOfTests){
-      //do nothing
-    }
+    // var currentTestNumber = 0;
+    // var numberOfTestsCompleted = 0;
+    // for (var key in tests){
+    //   currentTestNumber++;
+    //   while (numberOfTestsCompleted != currentTestNumber - 1){
+    //     //wait for previous test to finish
+    //   }
+    //   console.log("running test: " + key);
+    //   tests[key](function (succeeded){
+    //     console.log(key + " succeeded = " + succeeded);
+    //     if (succeeded){
+    //       successCount += 1;
+    //     } else {
+    //       // console.log("Got exception: " + exception);
+    //       failCount += 1;
+    //       failedTests += key + ": FAILED.    ";
+    //     }
+    //     numberOfTestsCompleted++;
+    //   });
+    // }
+    // while (numberOfTestsCompleted < numberOfTests){
+    //   //do nothing
+    // }
+
+    desc('Runs the Jake tests.');
+    task('test', {async: true}, function () {
+      var cmds = [
+        'node ./tests/users_model.js'
+      ];
+      jake.exec(cmds, function () {
+        console.log('All tests passed.');
+        complete();
+      }, {printStdout: true});
+    });
+
+
+
     var answerDict = {};
     answerDict.totalTests = successCount + failCount;
     answerDict.nrFailed = failCount;
@@ -183,6 +197,18 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
     callback(answerDict);
   });
 };
+
+function bob(key, callback){
+    tests[key](function(succeeded){
+      bob(next_key, callback);
+    });
+
+  }
+for (var key in tests){
+  bob(key, succeededCallback);
+  
+}
+
 /*
 // Can also define them on the prototype
 UsersModel.prototype.someOtherMethod = function () {
