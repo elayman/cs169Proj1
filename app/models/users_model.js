@@ -172,30 +172,41 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
     // while (numberOfTestsCompleted < numberOfTests){
     //   //do nothing
     // }
-    var jake = require('jake');
-    var task = require('task');
+
+    
     // desc('Runs the Jake tests.');
-    task('test', {async: true}, function () {
-      var cmds = [
-        'node ./tests/users_model.js'
-      ];
-      jake.exec(cmds, function () {
-        console.log('All tests passed.');
-        complete();
-      }, {printStdout: true});
-    });
+    // task('test', {async: true}, function () {
+
+      tests.run(function (results){
+        //print out results
+        console.log("Results of the tests: " + results);
+        var answerDict = {};
+        answerDict.totalTests = results.total;
+        answerDict.nrFailed = results.broken;
+        answerDict.output = "WOOHOO";
+        callback(answerDict);
+      });
+
+      // var cmds = [
+      //   'node ./tests/users_model.js'
+      // ];
+      // jake.exec(cmds, function () {
+      //   console.log('All tests passed.');
+      //   complete();
+      // }, {printStdout: true});
+    // });
 
 
 
-    var answerDict = {};
-    answerDict.totalTests = successCount + failCount;
-    answerDict.nrFailed = failCount;
-    if (failCount == 0){
-      answerDict.output = "All tests passed";
-    } else {
-      answerDict.output = failedTests;
-    }
-    callback(answerDict);
+    // var answerDict = {};
+    // answerDict.totalTests = successCount + failCount;
+    // answerDict.nrFailed = failCount;
+    // if (failCount == 0){
+    //   answerDict.output = "All tests passed";
+    // } else {
+    //   answerDict.output = failedTests;
+    // }
+    // callback(answerDict);
   });
 };
 

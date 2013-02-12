@@ -158,4 +158,63 @@ tests = {
 //   }
 };
 
-module.exports = tests;
+
+//vows tests
+var vows = require('vows');
+var suite = vows.describe('Testing Model');
+suite.addBatch({
+  // 'Test Login': {
+  //   topic: function () {
+  //     var self = this;
+  //     UsersModel.add('Greg', 'MyPassword!', function (answerDict) {
+  //       UsersModel.login('Greg', 'MyPassword!', self.callback);
+  //     });
+  //   },
+  //   'Login callback': function (answerDict, err) {
+  //     //err is not used
+  //     // console.log("answerDict: " + answerDict);
+  //     // for (var key in answerDict){
+  //     //   console.log(key + " : " + answerDict[key]);
+  //     // }
+  //     try{
+  //         assert.equal(answerDict, {'errCode': 1, 'count': 2});
+  //         // callback(true);
+  //       }catch (exc){
+  //         console.log("exception: " + exc);
+  //         // callback(false);
+  //       }
+  //     }
+  // }
+  'Test Model Add': {
+    topic: function () {
+                        UsersModel.add('Greg', 'MyPassword!', this.callback);
+    },
+    'Add User Callback': function (answerDict, err) {
+      console.log("GOT HERE");
+          try{
+            console.log("received answerDict: "+ answerDict);
+            test.deepEqual(answerDict, {'errCode': 1, 'count': 1});
+            // callback(true);
+          }catch (exc) {
+            console.log("exception: " + exc);
+            // callback(false);
+          }
+          // test.done();
+    }
+  }
+});
+// exports['Test Model Add'] = function (test) {
+//     UsersModel.add('Greg', 'MyPassword!', function (answerDict) {
+//       try{
+//         test.deepEqual(answerDict, {'errCode': 1, 'count': 1});
+//         callback(true);
+//       }catch (exc) {
+//         callback(false);
+//       }
+//       test.done();
+//     });
+// };
+
+
+// module.exports = tests;
+module.exports = suite;
