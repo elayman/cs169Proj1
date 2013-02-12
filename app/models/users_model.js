@@ -172,9 +172,10 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
     // while (numberOfTestsCompleted < numberOfTests){
     //   //do nothing
     // }
-
+    var jake = require('jake');
+    var task = require('task');
     // desc('Runs the Jake tests.');
-    //task('test', {async: true}, function () {
+    task('test', {async: true}, function () {
       var cmds = [
         'node ./tests/users_model.js'
       ];
@@ -182,7 +183,7 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
         console.log('All tests passed.');
         complete();
       }, {printStdout: true});
-    //});
+    });
 
 
 
