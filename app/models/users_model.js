@@ -143,6 +143,13 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
     var failCount = 0;
     var tests = require('../../test/users_model.js');
     var failedTests = "";
+
+    var numberOfTests = 0;
+    for (var key in tests){
+      numberOfTests++;
+    }
+
+    var numberOfTestsCompleted = 0;
     for (var key in tests){
       console.log("running test: " + key);
       tests[key](function (succeeded){
@@ -154,7 +161,11 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
           failCount += 1;
           failedTests += key + ": FAILED.    ";
         }
+        numberOfTestsCompleted++;
       });
+    }
+    while (numberOfTestsCompleted < numberOfTests){
+      //do nothing
     }
     var answerDict = {};
     answerDict.totalTests = successCount + failCount;
