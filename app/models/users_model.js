@@ -153,7 +153,7 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
     for (var key in tests){
       console.log("running test: " + key);
       tests[key](function (succeeded){
-        console.log("succeeded = " + succeeded);
+        console.log(key + " succeeded = " + succeeded);
         if (succeeded){
           successCount += 1;
         } else {
