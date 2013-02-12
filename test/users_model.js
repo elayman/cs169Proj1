@@ -193,7 +193,7 @@ suite.addBatch({
       console.log("GOT HERE");
           try{
             console.log("received answerDict: "+ answerDict);
-            test.deepEqual(answerDict, {'errCode': 1, 'count': 1});
+            assert.deepEqual(answerDict, {'errCode': 1, 'count': 1});
             // callback(true);
           }catch (exc) {
             console.log("exception: " + exc);
