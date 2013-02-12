@@ -36,15 +36,18 @@ var UsersModel = function () {
 UsersModel.add = function add (username, password, callback) {
   var count = 0;
   if (!username || username.length == 0 || username.length > 128) {
+      console.log("bad username block");
       var answerDict = {};
       answerDict.errCode = -3; //"ERR_BAD_USERNAME"
       return answerDict;
     } else if (!password || password.length == 0 || password.length > 128){
+      console.log("bad password block");
       //Check if password is not empty and <128 chars
       var answerDict = {};
       answerDict.errCode = -4; //"ERR_BAD_PASSWORD"
       callback(answerDict);
     } else {
+      console.log("add to database block");
       //Add to database
       geddy.model.UsersModel.load({username: username}, function (err, result) {
       //geddy.db.users.findOne({username: user}, function(err, result){
