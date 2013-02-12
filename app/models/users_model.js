@@ -198,17 +198,6 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
   });
 };
 
-function bob(key, callback){
-    tests[key](function(succeeded){
-      bob(next_key, callback);
-    });
-
-  }
-for (var key in tests){
-  bob(key, succeededCallback);
-  
-}
-
 /*
 // Can also define them on the prototype
 UsersModel.prototype.someOtherMethod = function () {
