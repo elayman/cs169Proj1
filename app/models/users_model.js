@@ -35,11 +35,11 @@ var UsersModel = function () {
 
 UsersModel.add = function add (username, password, callback) {
   var count = 0;
-  if (!username || username=="" || username.length > 128) {
+  if (!username || username.length == 0 || username.length > 128) {
       var answerDict = {};
       answerDict.errCode = -3; //"ERR_BAD_USERNAME"
       return answerDict;
-    } else if (!password || password=="" || password.length > 128){
+    } else if (!password || password.length == 0 || password.length > 128){
       //Check if password is not empty and <128 chars
       var answerDict = {};
       answerDict.errCode = -4; //"ERR_BAD_PASSWORD"
