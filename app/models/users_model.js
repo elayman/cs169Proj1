@@ -149,9 +149,10 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
       numberOfTests++;
     }
 
-    var currentTestNumber = 1;
+    var currentTestNumber = 0;
     var numberOfTestsCompleted = 0;
     for (var key in tests){
+      currentTestNumber++;
       while (numberOfTestsCompleted != currentTestNumber - 1){
         //wait for previous test to finish
       }
