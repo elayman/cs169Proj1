@@ -4,45 +4,46 @@ var assert = require('assert')
 
 tests = [
   //0 'Test Model Add'
-  function (callback) {
-  	UsersModel.add('Greg', 'MyPassword!', function (answerDict) {
-  		try{
-  			assert.deepEqual(answerDict, {'errCode': 1, 'count': 1});
-  			callback(true);
-  		}catch (exc) {
-  			callback(false);
-  		}
-  	});
-  },
-  //1 'Test Model Add Same'
-  function (callback) {
-  	UsersModel.add('Bob', 'MyPassword!', function (answerDict) {
-  		console.log("add first same with errCode: " + answerDict.errCode);
-  		UsersModel.add('Bob', 'MyPassword!', function (answerDict) {
-  			console.log("add second same with errCode: " + answerDict.errCode);
-  			try{
-  	  			assert.deepEqual(answerDict, {'errCode': -2});
-  	  			callback(true);
-  	  		}catch (exc){
-  	  			callback(false);
-  	  		}
-  	  	});
-  	});
-  },
-  //2 'Test Model Add Different'
-  function (callback) {
-	UsersModel.add('Greg2', 'MyPassword!', function (answerDict) {
-  		try{
-  			assert.deepEqual(answerDict, {'errCode': 1, 'count': 1});
-  			callback(true);
-  		}catch (exc){
-  			callback(false);
-  		}
-  	});
-  },
+ //  function (callback) {
+ //  	UsersModel.add('Greg', 'MyPassword!', function (answerDict) {
+ //  		try{
+ //  			assert.deepEqual(answerDict, {'errCode': 1, 'count': 1});
+ //  			callback(true);
+ //  		}catch (exc) {
+ //  			callback(false);
+ //  		}
+ //  	});
+ //  },
+ //  //1 'Test Model Add Same'
+ //  function (callback) {
+ //  	UsersModel.add('Bob', 'MyPassword!', function (answerDict) {
+ //  		console.log("add first same with errCode: " + answerDict.errCode);
+ //  		UsersModel.add('Bob', 'MyPassword!', function (answerDict) {
+ //  			console.log("add second same with errCode: " + answerDict.errCode);
+ //  			try{
+ //  	  			assert.deepEqual(answerDict, {'errCode': -2});
+ //  	  			callback(true);
+ //  	  		}catch (exc){
+ //  	  			callback(false);
+ //  	  		}
+ //  	  	});
+ //  	});
+ //  },
+ //  //2 'Test Model Add Different'
+ //  function (callback) {
+	// UsersModel.add('Greg2', 'MyPassword!', function (answerDict) {
+ //  		try{
+ //  			assert.deepEqual(answerDict, {'errCode': 1, 'count': 1});
+ //  			callback(true);
+ //  		}catch (exc){
+ //  			callback(false);
+ //  		}
+ //  	});
+ //  },
   //3 'Test Model Add Empty Username'
   function (callback) {
 	UsersModel.add('', 'MyPassword!', function (answerDict) {
+    console.log("added null username and returned answerDict");
   		try{
   			assert.deepEqual(answerDict, {'errCode': -3});
   			callback(true);
