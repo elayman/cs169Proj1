@@ -178,7 +178,7 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
     // desc('Runs the Jake tests.');
     // task('test', {async: true}, function () {
 
-      tests.run(function (results){
+      tests.run(function (results, err){
         //print out results
         console.log("Results of the tests: " + results);
         var answerDict = {};
