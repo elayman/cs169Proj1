@@ -2,8 +2,9 @@ var assert = require('assert')
   , tests
   , UsersModel = geddy.model.UsersModel;
 
-tests = {
-  'Test Model Add': function (callback) {
+tests = [
+  //0 'Test Model Add'
+  function (callback) {
   	UsersModel.add('Greg', 'MyPassword!', function (answerDict) {
   		try{
   			assert.deepEqual(answerDict, {'errCode': 1, 'count': 1});
@@ -13,21 +14,23 @@ tests = {
   		}
   	});
   },
-  'Test Model Add Same': function (callback) {
+  //1 'Test Model Add Same'
+  function (callback) {
   	UsersModel.add('Bob', 'MyPassword!', function (answerDict) {
-		console.log("add first same with errCode: " + answerDict.errCode);
-		UsersModel.add('Bob', 'MyPassword!', function (answerDict) {
-			console.log("add second same with errCode: " + answerDict.errCode);
-			try{
-	  			assert.deepEqual(answerDict, {'errCode': -2});
-	  			callback(true);
-	  		}catch (exc){
-	  			callback(false);
-	  		}
-	  	});
+  		console.log("add first same with errCode: " + answerDict.errCode);
+  		UsersModel.add('Bob', 'MyPassword!', function (answerDict) {
+  			console.log("add second same with errCode: " + answerDict.errCode);
+  			try{
+  	  			assert.deepEqual(answerDict, {'errCode': -2});
+  	  			callback(true);
+  	  		}catch (exc){
+  	  			callback(false);
+  	  		}
+  	  	});
   	});
   },
-  'Test Model Add Different': function (callback) {
+  //2 'Test Model Add Different'
+  function (callback) {
 	UsersModel.add('Greg2', 'MyPassword!', function (answerDict) {
   		try{
   			assert.deepEqual(answerDict, {'errCode': 1, 'count': 1});
@@ -37,7 +40,8 @@ tests = {
   		}
   	});
   },
-  'Test Model Add Empty Username': function (callback) {
+  //3 'Test Model Add Empty Username'
+  function (callback) {
 	UsersModel.add('', 'MyPassword!', function (answerDict) {
   		try{
   			assert.deepEqual(answerDict, {'errCode': -3});
@@ -47,8 +51,10 @@ tests = {
   		}
   	});
   },
-  'Test Model Add Null Username': function (callback) {
+  //4 'Test Model Add Null Username'
+  function (callback) {
 	UsersModel.add(null, 'MyPassword!', function (answerDict) {
+    console.log("added null username and returned answerDict");
   		try{
   			assert.deepEqual(answerDict, {'errCode': -3});
   			callback(true);
@@ -57,7 +63,8 @@ tests = {
   		}
   	});
   },
-  'Test Model Add 129 Username': function (callback) {
+  //5 'Test Model Add 129 Username'
+  function (callback) {
 	UsersModel.add('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'MyPassword!', function (answerDict) {
   		try{
   			assert.deepEqual(answerDict, {'errCode': -3});
@@ -67,7 +74,8 @@ tests = {
   		}
   	});
   },
-  'Test Model Add Empty Password': function (callback) {
+  //6 'Test Model Add Empty Password'
+  function (callback) {
 	UsersModel.add('Greg5', '', function (answerDict) {
   		try{
   			assert.deepEqual(answerDict, {"errCode": -4});
@@ -77,7 +85,8 @@ tests = {
   		}
   	});
   },
-  'Test Model Add Empty Password': function (callback) {
+  //7 'Test Model Add Empty Password'
+  function (callback) {
 	UsersModel.add('Greg6', null, function (answerDict) {
 		for (var key in answerDict){
   			console.log(key + " : " + answerDict[key]);
@@ -90,7 +99,8 @@ tests = {
 	  		}
 	  	});
   },
-  'Test Model Add 129 Password': function (callback) {
+  //8 'Test Model Add 129 Password'
+  function (callback) {
 	UsersModel.add('Greg7', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', function (answerDict) {
   		for (var key in answerDict){
   			console.log(key + " : " + answerDict[key]);
@@ -103,7 +113,8 @@ tests = {
   		}
   	});
   },
-  'Test Model Login': function (callback) {
+  //9 'Test Model Login'
+  function (callback) {
   	UsersModel.add('Greg', 'MyPassword!', function (answerDict) {
 		UsersModel.login('Greg', 'MyPassword!', function (answerDict) {
 			console.log("login with answerDict: ");
@@ -121,7 +132,8 @@ tests = {
   	});
 
   },
-  'Test Model Login Bad Credentials': function (callback) {
+  //10 'Test Model Login Bad Credentials'
+  function (callback) {
 	UsersModel.login('Greg12392', 'MyPassword!2', function (answerDict) {
 		console.log("login with answerDict: ");
 		for (var key in answerDict){
@@ -156,56 +168,56 @@ tests = {
 //   		assert.equal(answerDict, {'errCode': 1});
 //   	});
 //   }
-};
+];
 
 
 //vows tests
-var vows = require('vows');
-var suite = vows.describe('Testing Model');
-suite.addBatch({
-  'Test Login': {
-    topic: function () {
-      var self = this;
-      UsersModel.add('Greg', 'MyPassword!', function (useless) {
-        assert.deepEqual(useless, {'errCode': 1, 'count': 1});
-        UsersModel.login('Greg', 'MyPassword!', self.callback);
-      });
-    },
-    'Login callback': function (answerDict, err) {
-      //err is not used
-      console.log("answerDict: ");
-      for (var key in answerDict){
-        console.log(key + " : " + answerDict[key]);
-      }
-      // try{
-          assert.deepEqual(answerDict, {'errCode': 1, 'count': 2});
-          // callback(true);
-        // }catch (exc){
-        //   console.log("exception caught: " + exc);
-        //   // callback(false);
-        // }
-      }
-  },
-  'Test Model Add': {
-    topic: function () {
-                        UsersModel.add('Greg', 'MyPassword!', this.callback);
-    },
-    'Add User Callback': function (answerDict, err) {
-      console.log("GOT HERE");
-          // try{
-            console.log("received answerDict: "+ answerDict);
-            //assert.deepEqual(answerDict, {'errCode': 1, 'count': 1});
-            assert.equal(false, true);
-            console.log("asserted deepEqual");
-            // callback(true);
-          // // }catch (exc) {
-          //   console.log("exception: " + exc);
-          //   // callback(false);
-          // }
-          // test.done();
-    }
-  }
-});
+// var vows = require('vows');
+// var suite = vows.describe('Testing Model');
+// suite.addBatch({
+//   'Test Login': {
+//     topic: function () {
+//       var self = this;
+//       UsersModel.add('Greg', 'MyPassword!', function (useless) {
+//         assert.deepEqual(useless, {'errCode': 1, 'count': 1});
+//         UsersModel.login('Greg', 'MyPassword!', self.callback);
+//       });
+//     },
+//     'Login callback': function (answerDict, err) {
+//       //err is not used
+//       console.log("answerDict: ");
+//       for (var key in answerDict){
+//         console.log(key + " : " + answerDict[key]);
+//       }
+//       // try{
+//           assert.deepEqual(answerDict, {'errCode': 1, 'count': 2});
+//           // callback(true);
+//         // }catch (exc){
+//         //   console.log("exception caught: " + exc);
+//         //   // callback(false);
+//         // }
+//       }
+//   },
+//   'Test Model Add': {
+//     topic: function () {
+//                         UsersModel.add('Greg', 'MyPassword!', this.callback);
+//     },
+//     'Add User Callback': function (answerDict, err) {
+//       console.log("GOT HERE");
+//           // try{
+//             console.log("received answerDict: "+ answerDict);
+//             //assert.deepEqual(answerDict, {'errCode': 1, 'count': 1});
+//             assert.equal(false, true);
+//             console.log("asserted deepEqual");
+//             // callback(true);
+//           // // }catch (exc) {
+//           //   console.log("exception: " + exc);
+//           //   // callback(false);
+//           // }
+//           // test.done();
+//     }
+//   }
+// });
 //Node unit
 // exports['Test Model Add'] = function (test) {
 //   test.expect(1);
@@ -220,5 +232,5 @@ suite.addBatch({
 //   });
 // };
 
-// module.exports = tests;
-module.exports = suite;
+module.exports = tests;
+// module.exports = suite;
