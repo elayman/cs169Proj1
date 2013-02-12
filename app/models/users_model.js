@@ -39,7 +39,7 @@ UsersModel.add = function add (username, password, callback) {
       console.log("bad username block");
       var answerDict = {};
       answerDict.errCode = -3; //"ERR_BAD_USERNAME"
-      return answerDict;
+      callback(answerDict);
     } else if (!password || password.length == 0 || password.length > 128){
       console.log("bad password block");
       //Check if password is not empty and <128 chars
