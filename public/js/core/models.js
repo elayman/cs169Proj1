@@ -36,16 +36,19 @@ var UsersModel = function () {
 
 UsersModel.add = function add (username, password, callback) {
   var count = 0;
-  if (!username || username=="" || username.length > 128) {
+  if (!username || username.length == 0 || username.length > 128) {
+      console.log("bad username block");
       var answerDict = {};
       answerDict.errCode = -3; //"ERR_BAD_USERNAME"
-      return answerDict;
-    } else if (!password || password=="" || password.length > 128){
+      callback(answerDict);
+    } else if (!password || password.length == 0 || password.length > 128){
+      console.log("bad password block");
       //Check if password is not empty and <128 chars
       var answerDict = {};
       answerDict.errCode = -4; //"ERR_BAD_PASSWORD"
       callback(answerDict);
     } else {
+      console.log("add to database block");
       //Add to database
       geddy.model.UsersModel.load({username: username}, function (err, result) {
       //geddy.db.users.findOne({username: user}, function(err, result){
@@ -150,8 +153,8 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
       numberOfTests++;
     }
     console.log("There are " + numberOfTests + " tests to run.");
-    var currentTestNumber = 0;
-    var numberOfTestsCompleted = 0;
+    var currentTestNumber = 1;
+    // var numberOfTestsCompleted = 0;
 
     var done = function done(){
       var answerDict = {};
@@ -165,7 +168,11 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
       callback(answerDict);
     };
 
-    var runTests = function runTests(){
+    var runTests = function runTests(didTestPass){
+      console.log("didTestPass is:" + didTestPass);
+      if (!didTestPass){
+        failCount += 1;
+      }
       if (currentTestNumber >= numberOfTests){
         //Done running all tests
         done();
@@ -176,12 +183,13 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
           tests[currentTestNumber](runTests);
           successCount += 1;
         } catch (exception) {
-            console.log("Got exception: " + exception);
-            failCount += 1;
-            failedTests += currentTestNumber + ": FAILED.    ";
+          console.log("Got exception: " + exception);
+          failCount += 1;
+          failedTests += currentTestNumber + ": FAILED.    ";
         }
         // numberOfTestsCompleted++;
         currentTestNumber++;
+        console.log("incrementing current test number to :" + currentTestNumber);
       }
     };
 

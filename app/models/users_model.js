@@ -152,8 +152,8 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
       numberOfTests++;
     }
     console.log("There are " + numberOfTests + " tests to run.");
-    var currentTestNumber = 0;
-    var numberOfTestsCompleted = 0;
+    var currentTestNumber = 1;
+    // var numberOfTestsCompleted = 0;
 
     var done = function done(){
       var answerDict = {};
@@ -167,7 +167,11 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
       callback(answerDict);
     };
 
-    var runTests = function runTests(){
+    var runTests = function runTests(didTestPass){
+      console.log("didTestPass is:" + didTestPass);
+      if (!didTestPass){
+        failCount += 1;
+      }
       if (currentTestNumber >= numberOfTests){
         //Done running all tests
         done();
@@ -178,12 +182,13 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
           tests[currentTestNumber](runTests);
           successCount += 1;
         } catch (exception) {
-            console.log("Got exception: " + exception);
-            failCount += 1;
-            failedTests += currentTestNumber + ": FAILED.    ";
+          console.log("Got exception: " + exception);
+          failCount += 1;
+          failedTests += currentTestNumber + ": FAILED.    ";
         }
         // numberOfTestsCompleted++;
         currentTestNumber++;
+        console.log("incrementing current test number to :" + currentTestNumber);
       }
     };
 

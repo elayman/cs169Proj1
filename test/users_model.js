@@ -3,7 +3,7 @@ var assert = require('assert')
   , UsersModel = geddy.model.UsersModel;
 
 tests = [
-  //0 'Test Model Add'
+  //1 'Test Model Add'
   function (callback) {
   	UsersModel.add('Greg', 'MyPassword!', function (answerDict) {
   		try{
@@ -14,7 +14,7 @@ tests = [
   		}
   	});
   },
-  //1 'Test Model Add Same'
+  //2 'Test Model Add Same'
   function (callback) {
   	UsersModel.add('Bob', 'MyPassword!', function (answerDict) {
   		console.log("add first same with errCode: " + answerDict.errCode);
@@ -29,7 +29,7 @@ tests = [
   	  	});
   	});
   },
-  //2 'Test Model Add Different'
+  //3 'Test Model Add Different'
   function (callback) {
 	UsersModel.add('Greg2', 'MyPassword!', function (answerDict) {
   		try{
@@ -40,10 +40,9 @@ tests = [
   		}
   	});
   },
-  //3 'Test Model Add Empty Username'
+  //4 'Test Model Add Empty Username'
   function (callback) {
 	UsersModel.add("", 'MyPassword!', function (answerDict) {
-    console.log("added null username and returned answerDict");
   		try{
   			assert.deepEqual(answerDict, {'errCode': -3});
   			callback(true);
@@ -52,7 +51,7 @@ tests = [
   		}
   	});
   },
-  //4 'Test Model Add Null Username'
+  //5 'Test Model Add Null Username'
   function (callback) {
 	UsersModel.add(null, 'MyPassword!', function (answerDict) {
     console.log("added null username and returned answerDict");
@@ -64,7 +63,7 @@ tests = [
   		}
   	});
   },
-  //5 'Test Model Add 129 Username'
+  //6 'Test Model Add 129 Username'
   function (callback) {
 	UsersModel.add('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'MyPassword!', function (answerDict) {
   		try{
@@ -75,7 +74,7 @@ tests = [
   		}
   	});
   },
-  //6 'Test Model Add Empty Password'
+  //7 'Test Model Add Empty Password'
   function (callback) {
 	UsersModel.add('Greg5', "", function (answerDict) {
   		try{
@@ -86,7 +85,7 @@ tests = [
   		}
   	});
   },
-  //7 'Test Model Add Empty Password'
+  //8 'Test Model Add Empty Password'
   function (callback) {
 	UsersModel.add('Greg6', null, function (answerDict) {
 		for (var key in answerDict){
@@ -100,7 +99,7 @@ tests = [
 	  		}
 	  	});
   },
-  //8 'Test Model Add 129 Password'
+  //9 'Test Model Add 129 Password'
   function (callback) {
 	UsersModel.add('Greg7', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', function (answerDict) {
   		for (var key in answerDict){
@@ -114,7 +113,7 @@ tests = [
   		}
   	});
   },
-  //9 'Test Model Login'
+  //10 'Test Model Login'
   function (callback) {
   	UsersModel.add('Greg', 'MyPassword!', function (answerDict) {
 		UsersModel.login('Greg', 'MyPassword!', function (answerDict) {
@@ -133,7 +132,7 @@ tests = [
   	});
 
   },
-  //10 'Test Model Login Bad Credentials'
+  //11 'Test Model Login Bad Credentials'
   function (callback) {
 	UsersModel.login('Greg12392', 'MyPassword!2', function (answerDict) {
 		console.log("login with answerDict: ");
