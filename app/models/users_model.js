@@ -173,7 +173,7 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
     //   //do nothing
     // }
 
-    desc('Runs the Jake tests.');
+    // desc('Runs the Jake tests.');
     task('test', {async: true}, function () {
       var cmds = [
         'node ./tests/users_model.js'
