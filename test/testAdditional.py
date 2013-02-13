@@ -22,15 +22,14 @@ class TestAddSameUser(testLib.RestTestCase):
         """
         expected = { 'errCode' : errCode }
         self.assertDictEqual(expected, respData)
-    def testAdd1(self):
+    def testAddSame(self):
         respData = self.makeRequest("/users/add", method="POST", data = { 'user' : 'user1', 'password' : 'password'} )
         self.assertFirstResponse(respData, count = 1)
-    def testAddSame(self):
         respData = self.makeRequest("/users/add", method="POST", data = { 'user' : 'user1', 'password' : 'password'} )
         self.assertSecondResponse(respData)
       
 class TestAddBadUserPassword(testLib.RestTestCase):
-    """Issue a REST API request to add the same user twice, and analyze the result"""
+    """Issue a REST API request to add a bad username and then bad password, and analyze the result"""
     def assertBadUserResponse(self, respData, errCode = testLib.RestTestCase.ERR_BAD_USERNAME):
         """
         Check that the response data dictionary matches the expected values
@@ -68,18 +67,20 @@ class TestLoginThatExists(testLib.RestTestCase):
         self.assertDictEqual(expected, respData)
 
     def testLogin1(self):
-        #add user
-        sameUserTest = TestAddSameUser()
-        sameUserTest.testAdd1();
+        """add user"""
+        respData = self.makeRequest("/users/add", method="POST", data = { 'user' : 'user1', 'password' : 'password'} )
+        self.assertResponse(respData, count = 1)
         #test login
         respData = self.makeRequest("/users/login", method="POST", data = { 'user' : 'user1', 'password' : 'password'} )
         self.assertResponse(respData, count = 2)
     def testLogin2(self):
-        #add user
-        sameUserTest = TestAddSameUser()
-        sameUserTest.testAdd1();
+        """add user"""
+        respData = self.makeRequest("/users/add", method="POST", data = { 'user' : 'user5', 'password' : 'password'} )
+        self.assertResponse(respData, count = 1)
         #test login
-        respData = self.makeRequest("/users/login", method="POST", data = { 'user' : 'user1', 'password' : 'password'} )
+        respData = self.makeRequest("/users/login", method="POST", data = { 'user' : 'user5', 'password' : 'password'} )
+        self.assertResponse(respData, count = 2)
+        respData = self.makeRequest("/users/login", method="POST", data = { 'user' : 'user5', 'password' : 'password'} )
         self.assertResponse(respData, count = 3)
 
 class TestLoginThatDoesNotExist(testLib.RestTestCase):
@@ -92,10 +93,26 @@ class TestLoginThatDoesNotExist(testLib.RestTestCase):
         self.assertDictEqual(expected, respData)
 
     def testLoginShouldFail(self):
-        #add user
-        sameUserTest = TestAddSameUser()
-        sameUserTest.testAdd1();
-        #test login
-        respData = self.makeRequest("/users/login", method="POST", data = { 'user9' : 'user1', 'password' : 'password'} )
+        respData = self.makeRequest("/users/login", method="POST", data = { 'user' : 'user1234284', 'password' : 'password'} )
         self.assertResponse(respData)
 
+class TestResetFixture(testLib.RestTestCase):
+    """Test Reset Fixture"""
+    def assertResponse(self, respData, count, errCode = testLib.RestTestCase.SUCCESS):
+        """
+        Check that the response data dictionary matches the expected values
+        """
+        expected = { 'errCode' : errCode }
+        if count is not None:
+            expected['count']  = count
+        self.assertDictEqual(expected, respData)
+
+    def testReset(self):
+        """add user"""
+        respData = self.makeRequest("/users/add", method="POST", data = { 'user' : 'user5', 'password' : 'password'} )
+        self.assertResponse(respData, count = 1)
+        respData = self.makeRequest("/TESTAPI/resetFixture", method="POST")
+        self.assertResponse(respData, count = None)
+        """add same user"""
+        respData = self.makeRequest("/users/add", method="POST", data = { 'user' : 'user5', 'password' : 'password'} )
+        self.assertResponse(respData, count = 1)
