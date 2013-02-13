@@ -2,8 +2,22 @@ curl -X POST -H "Content-Type: application/json" --data '{"user": "Bob", "passwo
 
 
 
-curl -X POST -H "Content-Type: application/json" --data '{"user": "Bob", "password" : "125"}' http://enigmatic-badlands-5168.herokuapp.com/users/add
+curl -X POST -H "Content-Type: application/json" --data '{"user": "Evan", "password" : "125"}' http://enigmatic-badlands-5168.herokuapp.com/users/add
 
 
+curl -X POST -H "Content-Type: application/json" http://enigmatic-badlands-5168.herokuapp.com/TESTAPI/resetFixture
+
+
+curl -X POST -H "Content-Type: application/json" http://enigmatic-badlands-5168.herokuapp.com/TESTAPI/unitTests
+
+
+
+//Testing
+make func_tests TEST_SERVER=http://enigmatic-badlands-5168.herokuapp.com
+
+
+//LOCAL
 
 curl -X POST -H "Content-Type: application/json" --data '{"user": "Bob", "password" : "125"}' http://localhost:4000/users/add
+
+curl -X POST -H "Content-Type: application/json" http://localhost:4000/TESTAPI/unitTests
