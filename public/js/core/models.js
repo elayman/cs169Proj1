@@ -150,10 +150,10 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
 
     var numberOfTests = 0;
     for (var key in tests){
-      numberOfTests++;
+      numberOfTests += 1;
     }
     console.log("There are " + numberOfTests + " tests to run.");
-    var currentTestNumber = 1;
+    var currentTestNumber = -1;
     // var numberOfTestsCompleted = 0;
 
     var done = function done(){
@@ -169,27 +169,35 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
     };
 
     var runTests = function runTests(didTestPass){
-      console.log("didTestPass is:" + didTestPass);
-      if (!didTestPass){
-        failCount += 1;
+      //Don't do anything for the first run
+      if (currentTestNumber !== -1){
+        //Save info from previous test
+        if (!didTestPass){
+          failCount += 1;
+          failedTests += "Test " + currentTestNumber + ": FAILED.    ";
+          console.log("Test " + currentTestNumber + ": FAILED.");
+        } else{
+          successCount += 1;
+          console.log("Test " + currentTestNumber + ": PASSED.");
+        }
       }
+      //Now we run the next test
+      currentTestNumber += 1;
+      console.log("running test: " + currentTestNumber + " and there are :" + numberOfTests + " total tests");
       if (currentTestNumber >= numberOfTests){
         //Done running all tests
+        console.log("running done now");
         done();
       } else{
-        console.log("running test: " + currentTestNumber);
-        try{
+        // try{
           //Run next test and pass this function as callback for next function
           tests[currentTestNumber](runTests);
-          successCount += 1;
-        } catch (exception) {
-          console.log("Got exception: " + exception);
-          failCount += 1;
-          failedTests += currentTestNumber + ": FAILED.    ";
-        }
+        // } catch (exception) {
+        //   console.log("Got exception: " + exception);
+        //   failCount += 1;
+        //   failedTests += currentTestNumber + ": FAILED.    ";
+        // }
         // numberOfTestsCompleted++;
-        currentTestNumber++;
-        console.log("incrementing current test number to :" + currentTestNumber);
       }
     };
 
