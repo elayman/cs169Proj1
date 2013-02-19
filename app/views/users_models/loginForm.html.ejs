@@ -42,7 +42,7 @@
 
           <%- partial('form', {usersModel: {}}) %>
 
-          <div class="form-actions">
+          <div class="button-container">
             <a href="#" onclick="loginClicked();" data-role="button" data-theme="b" data-transition="slide" class='f_left' >
               Login
               <input id='loginInput' name='loginInput' class='hidden' type='checkbox' > </input>
@@ -64,11 +64,14 @@
     }
     .f_left {
       float: left;
-      width: 40%;
+      width: 45%;
     }
     .f_right {
       float: right;
-      width: 40%;
+      width: 45%;
+    }
+    .button-container {
+      margin-top: 5%;
     }
   </style>
 
