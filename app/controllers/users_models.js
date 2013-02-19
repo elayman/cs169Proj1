@@ -75,14 +75,14 @@ var UsersModels = function () {
   this.resetFixture = function (req, resp, params) {
     var self = this;
     geddy.model.UsersModel.TESTAPI_resetFixture(function (answerDict) {
-      self.respond(answerDict);
+      self.respond(answerDict, {format: 'json'});
     });
   };
 
   this.unitTests = function (req, resp, params) {
     var self = this;
     geddy.model.UsersModel.TESTAPI_unitTests(function (answerDict) {
-      self.respond(answerDict);
+      self.respond(answerDict, {format: 'json'});
     });
   };
 
