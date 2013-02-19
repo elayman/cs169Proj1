@@ -3,28 +3,6 @@
 <body> 
 
   <div class="hero-unit">
-    <div class="warning">
-      <% if (params.errCode && params.errCode == -1) { %>
-          <p> 
-            Incorrect Username or Password. Please Try Again. 
-          </p>
-      <% } %>
-      <% if (params.errCode && params.errCode == -2) { %>
-          <p> 
-            A user with that username already exists. Please Try Again with another user. 
-          </p>
-      <% } %>
-      <% if (params.errCode && params.errCode == -3) { %>
-        <p> 
-          Invalid Username. Usernames must be at least 1 character long and less than 128 characters. 
-        </p>
-      <% } %>
-      <% if (params.errCode  && params.errCode == -4) { %>
-        <p> 
-          Invalid Password. Passwords must be at least 1 character long and less than 128 characters. 
-        </p>
-      <% } %>
-    </div>
     <% if (params.errCode && params.errCode == 1) { %>
       <p> Welcome: <%= params.user %> </p>
       <p> You have logged in <%= params.count %> times. </p>
@@ -36,10 +14,33 @@
         </a>
       </form>
     <% } else { %>
+
+      <legend>Login</legend>
+      <div class="warning">
+        <% if (params.errCode && params.errCode == -1) { %>
+            <p> 
+              Incorrect Username or Password. Please Try Again. 
+            </p>
+        <% } %>
+        <% if (params.errCode && params.errCode == -2) { %>
+            <p> 
+              A user with that username already exists. Please Try Again with another user. 
+            </p>
+        <% } %>
+        <% if (params.errCode && params.errCode == -3) { %>
+          <p> 
+            Invalid Username. Usernames must be at least 1 character long and less than 128 characters. 
+          </p>
+        <% } %>
+        <% if (params.errCode  && params.errCode == -4) { %>
+          <p> 
+            Invalid Password. Passwords must be at least 1 character long and less than 128 characters. 
+          </p>
+        <% } %>
+      </div>
+    
       <form id="usersModel-form" class="form-horizontal" action="/users/loginForm" method="POST">
         <fieldset>
-          <legend>Login</legend>
-
           <%- partial('form', {usersModel: {}}) %>
 
           <div class="button-container">
