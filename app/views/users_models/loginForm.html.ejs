@@ -94,19 +94,22 @@
     function handle_login_response(data, user) {
       if (data.errCode){
         if (data.errCode == 1){
+          //SUCCESS
           $('.warning').hide();
           $('#loginForm').hide();
           $('#welcomeContainer').show();
-          $('#welcomeMessage').html = '<p> Welcome: ' + user + '</p>' + 
+          var welcomeHtml = '<p> Welcome: ' + user + '</p>' + 
               '<p> You have logged in ' + data.count + ' times. </p><p></p>';
+          $('#welcomeMessage').html(welcomeHtml);
         } else if (data.errCode == -1){
+          //Bad user/pw
           $('.warning').hide();
           $('#firstError').show();
         } 
       } 
     }
 
-    //Login button pressed so submit form and turn on loginInput checkbox
+    //Login button pressed so post to login and change UI
     var loginClicked = function () {
       console.log('loginClicked');
       var user = $('#userInput').val();
@@ -120,6 +123,7 @@
     function handle_add_user_response(data, user) {
       if (data.errCode){
         if (data.errCode == 1){
+          //SUCCESS
           $('.warning').hide();
           $('#loginForm').hide();
           $('#welcomeContainer').show();
@@ -127,19 +131,22 @@
               '<p> You have logged in ' + data.count + ' times. </p><p></p>';
           $('#welcomeMessage').html(welcomeHtml);
         } else if (data.errCode == -2){
+          //User Exists
           $('.warning').hide();
           $('#secondError').show();
         } else if (data.errCode == -3){
+          //Bad Username
           $('.warning').hide();
           $('#thirdError').show();
         } else if (data.errCode == -4){
+          //Bad Password
           $('.warning').hide();
           $('#fourthError').show();
         }
       }
     }
 
-    //Add button pressed so submit form and turn on addInput checkbox
+    //Add button pressed so post to add and then change UI
     var addClicked = function () {
       console.log('addClicked');
       var user = $('#userInput').val();
