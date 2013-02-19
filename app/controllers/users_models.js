@@ -11,6 +11,8 @@ var UsersModels = function () {
   //POST Request for doForm
   this.loginForm = function (req, resp, params) {
     var self = this;
+    console.log("LAYOUT IS: " + params.layout);
+    // params.layout = 'loginForm';
     console.log("doForm called with loginInput: " + params.loginInput + " and addInput: " + params.addInput);
     if (params.addInput == 'on') {
       self.add(req, resp, params);
@@ -37,7 +39,8 @@ var UsersModels = function () {
       if (answerDict){
         params.count = answerDict.count;
         params.errCode = answerDict.errCode;
-        self.respond(answerDict);
+        // var useLayout = params.layout;
+        self.respond(answerDict, {format: 'json', params: params});
       }
     });
   };
@@ -64,7 +67,8 @@ var UsersModels = function () {
         params.count = answerDict.count;
         params.errCode = answerDict.errCode;
         console.log("LOGGED IN AND GOT errCode: " + answerDict.errCode);
-        self.respond(answerDict);
+        // var useLayout = params.layout;
+        self.respond(answerDict, {format: 'json', params: params});
       } else{
         console.log("TRIED TO LOG IN BUT FAILED");
       }
