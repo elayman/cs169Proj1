@@ -12,7 +12,7 @@ var UsersModels = function () {
   this.loginForm = function (req, resp, params) {
     var self = this;
     console.log("LAYOUT IS: " + params.layout);
-    // params.layout = 'loginForm';
+    params.format = 'html';
     console.log("doForm called with loginInput: " + params.loginInput + " and addInput: " + params.addInput);
     if (params.addInput == 'on') {
       self.add(req, resp, params);
@@ -39,8 +39,11 @@ var UsersModels = function () {
       if (answerDict){
         params.count = answerDict.count;
         params.errCode = answerDict.errCode;
-        // var useLayout = params.layout;
-        self.respond(answerDict, {format: 'json', params: params});
+        var useFormat = params.format;
+        if (useFormat != 'html') {
+          useFormat = 'json';
+        }
+        self.respond(answerDict, {format: useFormat});
       }
     });
   };
@@ -67,8 +70,11 @@ var UsersModels = function () {
         params.count = answerDict.count;
         params.errCode = answerDict.errCode;
         console.log("LOGGED IN AND GOT errCode: " + answerDict.errCode);
-        // var useLayout = params.layout;
-        self.respond(answerDict, {format: 'json', params: params});
+        var useFormat = params.format;
+        if (useFormat != 'html') {
+          useFormat = 'json';
+        }
+        self.respond(answerDict, {format: useFormat});
       } else{
         console.log("TRIED TO LOG IN BUT FAILED");
       }
