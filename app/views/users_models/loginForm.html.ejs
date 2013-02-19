@@ -4,6 +4,16 @@
 
   <div class="hero-unit">
     <div class="warning">
+      <% if (params.errCode && params.errCode == -1) { %>
+          <p> 
+            Incorrect Username or Password. Please Try Again. 
+          </p>
+      <% } %>
+      <% if (params.errCode && params.errCode == -2) { %>
+          <p> 
+            A user with that username already exists. Please Try Again with another user. 
+          </p>
+      <% } %>
       <% if (params.errCode && params.errCode == -3) { %>
         <p> 
           Invalid Username. Usernames must be at least 1 character long and less than 128 characters. 
@@ -13,9 +23,6 @@
         <p> 
           Invalid Password. Passwords must be at least 1 character long and less than 128 characters. 
         </p>
-      <% } %>
-      <% if (params.errCode && params.errCode == -1) { %>
-          <p> Incorrect Username or Password. Please Try Again. </p>
       <% } %>
     </div>
     <% if (params.errCode && params.errCode == 1) { %>
@@ -27,7 +34,6 @@
           Logout
           <input class="hidden"> </input>
         </a>
-        <!-- <a href="/" data-role="button" data-theme="b" data-transition="slide" >Logout</a> -->
       </form>
     <% } else { %>
       <form id="usersModel-form" class="form-horizontal" action="/users/loginForm" method="POST">
@@ -45,7 +51,6 @@
               Add
               <input id='addInput' name='addInput' class='hidden' type='checkbox' > </input>
             </a>
-            <!-- <%- contentTag('input', 'Login', {type: 'submit', class: 'btn btn-primary'}) %> -->
           </div>
         </fieldset>
       </form>
@@ -68,6 +73,8 @@
   </style>
 
   <script type="text/javascript">
+    //Use these functions to check and unselect check boxes for inputs "Login" and "Add"
+    //so that the server knows which button was pressed
     function check()
     {
       document.getElementById("check1").checked=true;
@@ -82,11 +89,13 @@
       $('#addInput').checked = false;
     };
 
+    //Login button pressed so submit form and turn on loginInput checkbox
     var loginClicked = function () {
       console.log('loginClicked');
       document.getElementById('loginInput').checked = true; 
       document.getElementById('usersModel-form').submit();
     }
+    //Add button pressed so submit form and turn on addInput checkbox
     var addClicked = function () {
       console.log('addClicked');
       document.getElementById('addInput').checked = true; 
