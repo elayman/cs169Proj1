@@ -1,0 +1,97 @@
+<!DOCTYPE html> 
+<html> 
+<body> 
+
+  <div class="hero-unit">
+        <% if (params.errCode && params.errCode == 1) { %>
+          <p> Welcome: <%= params.user %> </p>
+          <p> You have logged in <%= params.count %> times. </p>
+          <p></p>
+          <form id="logout-form" class="form-horizontal" action="/" method="GET">
+            <a href="javascript:{}" onclick="document.getElementById('logout-form').submit();" data-role="button" data-theme="b" data-transition="slide" >
+              Logout
+              <input class="hidden"> </input>
+            </a>
+            <!-- <a href="/" data-role="button" data-theme="b" data-transition="slide" >Logout</a> -->
+          </form>
+        <% } else { %>
+          <form id="usersModel-form" class="form-horizontal" action="/users/loginForm" method="POST">
+            <fieldset>
+            <legend>Login</legend>
+
+            <%- partial('form', {usersModel: {}}) %>
+
+            <div class="form-actions">
+              <a href="#" onclick="loginClicked();" data-role="button" data-theme="b" data-transition="slide" class='f_left' >
+                Login
+                <input id='loginInput' name='loginInput' class='hidden' type='checkbox' > </input>
+              </a>
+              <a href="#" onclick="addClicked();" data-role="button" data-theme="b" data-transition="slide" class='f_right' >
+                Add
+                <input id='addInput' name='addInput' class='hidden' type='checkbox' > </input>
+              </a>
+              <!-- <%- contentTag('input', 'Login', {type: 'submit', class: 'btn btn-primary'}) %> -->
+            </div>
+
+            <div class="warning">
+              <% if (params.errCode && params.errCode == -3) { %>
+                <p> 
+                  Invalid Username. Usernames must be at least 1 character long and less than 128 characters. 
+                </p>
+              <% } %>
+              <% if (params.errCode  && params.errCode == -4) { %>
+                <p> 
+                  Invalid Password. Passwords must be at least 1 character long and less than 128 characters. 
+                </p>
+              <% } %>
+              <% if (params.errCode && params.errCode == -1) { %>
+                  <p> Incorrect Username or Password. Please Try Again. </p>
+              <% } %>
+            </div>
+        <% } %>
+      </fieldset>
+    </form>
+  </div>
+
+  <style type="text/css">
+    .warning {
+      color: red;
+    }
+    .f_left {
+      float: left;
+      width: 40%;
+    }
+    .f_right {
+      float: right;
+      width: 40%;
+    }
+  </style>
+
+  <script type="text/javascript">
+    function check()
+    {
+      document.getElementById("check1").checked=true;
+    }
+    function uncheck()
+    {
+      document.getElementById("check1").checked=false;
+    }
+    window.onload = function () {
+      //Uncheck the inputs
+      $('#loginInput').checked = false;
+      $('#addInput').checked = false;
+    };
+
+    var loginClicked = function () {
+      console.log('loginClicked');
+      document.getElementById('loginInput').checked = true; 
+      document.getElementById('usersModel-form').submit();
+    }
+    var addClicked = function () {
+      console.log('addClicked');
+      document.getElementById('addInput').checked = true; 
+      document.getElementById('usersModel-form').submit();
+    }
+  </script>
+</body>
+</html>

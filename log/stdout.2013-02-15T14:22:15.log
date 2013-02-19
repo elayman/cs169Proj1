@@ -1,0 +1,71 @@
+[Fri, 15 Feb 2013 22:16:58 GMT] INFO Server starting with config: {
+  "environment": "development",
+  "workers": 1,
+  "port": 4000,
+  "spdy": null,
+  "ssl": null,
+  "debug": true,
+  "rotateWorkers": false,
+  "rotationWindow": 7200000,
+  "rotationTimeout": 300000,
+  "logDir": "/Users/elayman/Documents/CS169/Geddy-Proj1/proj1/log",
+  "gracefulShutdownTimeout": 30000,
+  "heartbeatInterval": 5000,
+  "heartbeatWindow": 20000,
+  "staticFilePath": "/Users/elayman/Documents/CS169/Geddy-Proj1/proj1/public",
+  "sessions": {
+    "store": "memory",
+    "key": "sid",
+    "expiry": 1209600
+  },
+  "cookieSessionKey": "sdata",
+  "metrics": null,
+  "i18n": {
+    "defaultLocale": "en-us",
+    "loadPaths": [
+      "/Users/elayman/Documents/CS169/Geddy-Proj1/proj1/config/locales"
+    ]
+  },
+  "hostname": "localhost",
+  "fullHostname": "http://localhost:4000",
+  "connectCompatibility": false,
+  "detailedErrors": true,
+  "model": {
+    "defaultAdapter": "memory"
+  },
+  "secret": "S98Nr8sp7kMRzOqvFyfKsU4WyEvamFdC6zJ4EH2av4dD4r1XQ9msH6SFEjYOUHBjl6DkUZLAcwBX5Au7OeM76PoUw6HJXXODWHtb11QPrU3RhwOoauXHo385FtecbHAu"
+}
+[Fri, 15 Feb 2013 22:16:58 GMT] INFO Creating 1 worker process.
+[Fri, 15 Feb 2013 22:16:59 GMT] INFO Server worker running in development on port 4000 with a PID of: 65650
+[Fri, 15 Feb 2013 22:16:59 GMT] DEBUG LOGGING STARTED ============================================
+[Fri, 15 Feb 2013 22:16:59 GMT] DEBUG ============================================================
+[Fri, 15 Feb 2013 22:20:29 GMT] INFO Code changed, killing 65650, cycling ...
+[Fri, 15 Feb 2013 22:20:29 GMT] INFO Creating 1 worker process.
+[Fri, 15 Feb 2013 22:20:29 GMT] INFO Server worker running in development on port 4000 with a PID of: 65776
+[Fri, 15 Feb 2013 22:20:29 GMT] DEBUG LOGGING STARTED ============================================
+[Fri, 15 Feb 2013 22:20:29 GMT] DEBUG ============================================================
+[Fri, 15 Feb 2013 22:20:39 GMT] INFO Code changed, killing 65776, cycling ...
+[Fri, 15 Feb 2013 22:20:39 GMT] INFO Creating 1 worker process.
+[Fri, 15 Feb 2013 22:20:39 GMT] INFO Server worker running in development on port 4000 with a PID of: 65778
+[Fri, 15 Feb 2013 22:20:39 GMT] DEBUG LOGGING STARTED ============================================
+[Fri, 15 Feb 2013 22:20:39 GMT] DEBUG ============================================================
+[Fri, 15 Feb 2013 22:20:44 GMT] INFO Code changed, killing 65778, cycling ...
+[Fri, 15 Feb 2013 22:20:44 GMT] INFO Creating 1 worker process.
+[Fri, 15 Feb 2013 22:20:44 GMT] INFO Server worker running in development on port 4000 with a PID of: 65780
+[Fri, 15 Feb 2013 22:20:44 GMT] DEBUG LOGGING STARTED ============================================
+[Fri, 15 Feb 2013 22:20:44 GMT] DEBUG ============================================================
+[Fri, 15 Feb 2013 22:21:14 GMT] INFO Code changed, killing 65780, cycling ...
+[Fri, 15 Feb 2013 22:21:14 GMT] INFO Creating 1 worker process.
+[Fri, 15 Feb 2013 22:21:14 GMT] INFO Server worker running in development on port 4000 with a PID of: 65791
+[Fri, 15 Feb 2013 22:21:14 GMT] DEBUG LOGGING STARTED ============================================
+[Fri, 15 Feb 2013 22:21:14 GMT] DEBUG ============================================================
+[Fri, 15 Feb 2013 22:21:44 GMT] INFO Code changed, killing 65791, cycling ...
+[Fri, 15 Feb 2013 22:21:44 GMT] INFO Creating 1 worker process.
+[Fri, 15 Feb 2013 22:21:44 GMT] INFO Server worker running in development on port 4000 with a PID of: 65795
+[Fri, 15 Feb 2013 22:21:44 GMT] DEBUG LOGGING STARTED ============================================
+[Fri, 15 Feb 2013 22:21:44 GMT] DEBUG ============================================================
+[Fri, 15 Feb 2013 22:22:14 GMT] INFO Code changed, killing 65795, cycling ...
+[Fri, 15 Feb 2013 22:22:14 GMT] INFO Creating 1 worker process.
+[Fri, 15 Feb 2013 22:22:14 GMT] INFO Server worker running in development on port 4000 with a PID of: 65798
+[Fri, 15 Feb 2013 22:22:14 GMT] DEBUG LOGGING STARTED ============================================
+[Fri, 15 Feb 2013 22:22:14 GMT] DEBUG ============================================================

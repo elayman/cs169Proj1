@@ -1,0 +1,51 @@
+[Thu, 14 Feb 2013 21:49:21 GMT] INFO Server starting with config: {
+  "environment": "development",
+  "workers": 1,
+  "port": 4000,
+  "spdy": null,
+  "ssl": null,
+  "debug": true,
+  "rotateWorkers": false,
+  "rotationWindow": 7200000,
+  "rotationTimeout": 300000,
+  "logDir": "/Users/elayman/Documents/CS169/Geddy-Proj1/proj1/log",
+  "gracefulShutdownTimeout": 30000,
+  "heartbeatInterval": 5000,
+  "heartbeatWindow": 20000,
+  "staticFilePath": "/Users/elayman/Documents/CS169/Geddy-Proj1/proj1/public",
+  "sessions": {
+    "store": "memory",
+    "key": "sid",
+    "expiry": 1209600
+  },
+  "cookieSessionKey": "sdata",
+  "metrics": null,
+  "i18n": {
+    "defaultLocale": "en-us",
+    "loadPaths": [
+      "/Users/elayman/Documents/CS169/Geddy-Proj1/proj1/config/locales"
+    ]
+  },
+  "hostname": "localhost",
+  "fullHostname": "http://localhost:4000",
+  "connectCompatibility": false,
+  "detailedErrors": true,
+  "model": {
+    "defaultAdapter": "memory"
+  },
+  "secret": "S98Nr8sp7kMRzOqvFyfKsU4WyEvamFdC6zJ4EH2av4dD4r1XQ9msH6SFEjYOUHBjl6DkUZLAcwBX5Au7OeM76PoUw6HJXXODWHtb11QPrU3RhwOoauXHo385FtecbHAu"
+}
+[Thu, 14 Feb 2013 21:49:21 GMT] INFO Creating 1 worker process.
+[Thu, 14 Feb 2013 21:49:22 GMT] INFO Server worker running in development on port 4000 with a PID of: 62988
+[Thu, 14 Feb 2013 21:49:22 GMT] DEBUG LOGGING STARTED ============================================
+[Thu, 14 Feb 2013 21:49:22 GMT] DEBUG ============================================================
+[Thu, 14 Feb 2013 21:50:27 GMT] INFO Code changed, killing 62988, cycling ...
+[Thu, 14 Feb 2013 21:50:27 GMT] INFO Creating 1 worker process.
+[Thu, 14 Feb 2013 21:50:27 GMT] INFO Server worker running in development on port 4000 with a PID of: 63000
+[Thu, 14 Feb 2013 21:50:27 GMT] DEBUG LOGGING STARTED ============================================
+[Thu, 14 Feb 2013 21:50:27 GMT] DEBUG ============================================================
+[Thu, 14 Feb 2013 21:50:32 GMT] INFO Code changed, killing 63000, cycling ...
+[Thu, 14 Feb 2013 21:50:32 GMT] INFO Creating 1 worker process.
+[Thu, 14 Feb 2013 21:50:32 GMT] INFO Server worker running in development on port 4000 with a PID of: 63002
+[Thu, 14 Feb 2013 21:50:32 GMT] DEBUG LOGGING STARTED ============================================
+[Thu, 14 Feb 2013 21:50:32 GMT] DEBUG ============================================================

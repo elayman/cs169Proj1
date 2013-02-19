@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+
     <meta charset="utf-8">
     <title>Geddy App | This app uses Geddy.js</title>
     <meta name="description" content="">
@@ -35,14 +40,14 @@
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="i-bar"><i class="icon-chevron-down icon-white"></i></span>
           </a>
-          <%- linkTo('Geddy App', '/', {class: 'brand'}) %>
+          <!-- <%- linkTo('Home', '/', {class: 'brand'}) %> -->
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><%- linkTo('Home', '/') %></li>
-              <li><%- linkTo('Tutorial', 'http://geddyjs.org/tutorial') %></li>
-              <li><%- linkTo('Docs', 'http://geddyjs.org/documentation') %></li>
+              <li id='HomeTab'><%- linkTo('Home', '/') %></li>
+              <li id='AddTab'><%- linkTo('Add', '/users/add') %></li>
             </ul>
-          </div><!--/.nav-collapse -->
+          </div>
+          <div id="login-container"><%- linkTo('Login', '/users/login') %></div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
@@ -50,4 +55,33 @@
       <%- yield(); %>
     </div>
   </body>
+
+  <style type="text/css">
+  #login-container {
+    text-align: right;
+    margin-top: 10px;
+    text-decoration: underline;
+    font-size: 20px;
+  }
+  </style>
+
+  <script type="text/javascript">
+    //Change active tab
+    window.onload = function () {
+      console.log("ran the function with pathname: " + location.pathname);
+      if (location.pathname == '/'){
+        console.log("making home active");
+        $('#HomeTab').toggleClass('active');
+        if ($('#AddTab').hasClass('active')){
+          $('#AddTab').toggleClass('active');
+        }
+      } else if (location.pathname == '/users/add'){
+        console.log("making add active");
+        $('#AddTab').toggleClass('active');
+        if ($('#HomeTab').hasClass('active')){
+          $('#HomeTab').toggleClass('active');
+        }
+      }
+    };
+  </script>
 </html>

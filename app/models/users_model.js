@@ -33,59 +33,50 @@ var UsersModel = function () {
 };
 
 
-UsersModel.add = function add (username, password, callback) {
+UsersModel.add = function (username, password, callback) {
   var count = 0;
+  var answerDict = {};
   if (!username || username.length == 0 || username.length > 128) {
       console.log("bad username block");
-      var answerDict = {};
       answerDict.errCode = -3; //"ERR_BAD_USERNAME"
       callback(answerDict);
-    } else if (!password || password.length == 0 || password.length > 128){
-      console.log("bad password block");
-      //Check if password is not empty and <128 chars
-      var answerDict = {};
-      answerDict.errCode = -4; //"ERR_BAD_PASSWORD"
-      callback(answerDict);
-    } else {
-      console.log("add to database block");
-      //Add to database
-      geddy.model.UsersModel.load({username: username}, function (err, result) {
-      //geddy.db.users.findOne({username: user}, function(err, result){
-        // if (err) {
-        //   return callback(err, null);
-        // }
-        // if we already have the user, don't add another
-        // console.log("got error: " + err + " and result:" + result);
-        if (result) {
-          // console.log("ERR_USER_EXISTS");
-          var answerDict = {};
-          answerDict.errCode = -2; //"ERR_USER_EXISTS"
-          callback(answerDict);
-        }
+  } else if (!password || password.length == 0 || password.length > 128){
+    console.log("bad password block");
+    //Check if password is not empty and <128 chars
+    answerDict.errCode = -4; //"ERR_BAD_PASSWORD"
+    callback(answerDict);
+  } else {
+    console.log("add to database block");
+    //Add to database
+    geddy.model.UsersModel.load({username: username}, function (err, result) {
+      // if we already have the user, don't add another
+      // console.log("got error: " + err + " and result:" + result);
+      if (result) {
+        // console.log("ERR_USER_EXISTS");
+        var answerDict = {};
+        answerDict.errCode = -2; //"ERR_USER_EXISTS"
+        callback(answerDict);
+      } else {
         // if we don't already have the user model, save a new one
-        else {
-          // todo.saved = true;
-          var userInstance = geddy.model.UsersModel.create({username: username, password: password, count: 1});
-          // console.log("userInstance created: " + userInstance);
-          // console.log("userInstance count: " + userInstance.count);
-          geddy.model.UsersModel.save(userInstance, function (err, results) {
-          //geddy.db.users.save(todo, function(err, docs){
-            //console.log("RESULT IS :" + results);
-            // console.log("Saved user instance with error: " + err);
-            // console.log("results are: " + results);
-            var answerDict = {};
-            answerDict.errCode = 1; //"SUCCESS"
-            answerDict.count = 1;
-            // console.log("SUCCESS");
-            callback(answerDict);
-            //return callback(err, docs);
-          });
-        }
-      });
-    }
+        var userInstance = geddy.model.UsersModel.create({username: username, password: password, count: 1});
+        // console.log("userInstance created: " + userInstance);
+        // console.log("userInstance count: " + userInstance.count);
+        geddy.model.UsersModel.save(userInstance, function (err, results) {
+          //console.log("RESULT IS :" + results);
+          // console.log("Saved user instance with error: " + err);
+          // console.log("results are: " + results);
+          var answerDict = {};
+          answerDict.errCode = 1; //"SUCCESS"
+          answerDict.count = 1;
+          // console.log("SUCCESS");
+          callback(answerDict);
+        });
+      }
+    });
+  }
 };
 
-UsersModel.login = function exists (username, password, callback) {
+UsersModel.login = function (username, password, callback) {
   geddy.model.UsersModel.load({username: username, password: password}, function (err, result){
   //geddy.db.users.findOne({username: user, password: password}, function(err, result){
     if (err) {
@@ -128,7 +119,7 @@ UsersModel.login = function exists (username, password, callback) {
   });
 };
 
-UsersModel.TESTAPI_resetFixture = function TESTAPI_resetFixture (callback) {
+UsersModel.TESTAPI_resetFixture = function (callback) {
   geddy.model.UsersModel.all(function (err, result) {
     // console.log("got all users models with error: " + err + " and result: " + result);
     for (var userModel in result){
@@ -139,7 +130,7 @@ UsersModel.TESTAPI_resetFixture = function TESTAPI_resetFixture (callback) {
   });
 };
 
-UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
+UsersModel.TESTAPI_unitTests = function (callback) {
   //Remove all database entries
   UsersModel.TESTAPI_resetFixture(function (nothingImportant){
     var successCount = 0;
@@ -167,7 +158,7 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
       callback(answerDict);
     };
 
-    var runTests = function runTests(didTestPass){
+    var runTests = function (didTestPass){
       //Don't do anything for the first run
       if (currentTestNumber !== -1){
         //Save info from previous test
@@ -188,70 +179,12 @@ UsersModel.TESTAPI_unitTests = function TESTAPI_unitTests (callback) {
         console.log("running done now");
         done();
       } else{
-        // try{
-          //Run next test and pass this function as callback for next function
-          tests[currentTestNumber](runTests);
-        // } catch (exception) {
-        //   console.log("Got exception: " + exception);
-        //   failCount += 1;
-        //   failedTests += currentTestNumber + ": FAILED.    ";
-        // }
-        // numberOfTestsCompleted++;
+        //Run next test and pass this function as callback for next function
+        tests[currentTestNumber](runTests);
       }
     };
-
-
     //Start running tests
     runTests();
-
-
-
-
-
-    // for (var key in tests){
-    //   currentTestNumber++;
-    //   while (numberOfTestsCompleted != currentTestNumber - 1){
-    //     //wait for previous test to finish
-    //   }
-    //   console.log("running test: " + key);
-    //   tests[key](function (succeeded){
-    //     console.log(key + " succeeded = " + succeeded);
-    //     if (succeeded){
-    //       successCount += 1;
-    //     } else {
-    //       // console.log("Got exception: " + exception);
-    //       failCount += 1;
-    //       failedTests += key + ": FAILED.    ";
-    //     }
-    //     numberOfTestsCompleted++;
-    //   });
-    // }
-    // while (numberOfTestsCompleted < numberOfTests){
-    //   //do nothing
-    // }
-
-    
-    // desc('Runs the Jake tests.');
-    // task('test', {async: true}, function () {
-
-      // tests.run(function (results, err){
-      //   //print out results
-      //   console.log("Results of the tests: " + results);
-      //   var answerDict = {};
-      //   answerDict.totalTests = results.total;
-      //   answerDict.nrFailed = results.broken;
-      //   answerDict.output = "WOOHOO";
-      //   callback(answerDict);
-      // });
-
-      // var cmds = [
-      //   'node ./tests/users_model.js'
-      // ];
-      // jake.exec(cmds, function () {
-      //   console.log('All tests passed.');
-      //   complete();
-      // }, {printStdout: true});
-    // });
   });
 };
 

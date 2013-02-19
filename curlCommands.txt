@@ -13,8 +13,9 @@ curl -X POST -H "Content-Type: application/json" http://enigmatic-badlands-5168.
 
 
 //Testing
-make func_tests TEST_SERVER=http://enigmatic-badlands-5168.herokuapp.com
+make func_tests TEST_SERVER=enigmatic-badlands-5168.herokuapp.com:80
 
+make func_tests TEST_SERVER=http://google.com:80
 
 //LOCAL
 
