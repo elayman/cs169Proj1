@@ -3,59 +3,54 @@
 <body> 
 
   <div class="hero-unit">
-    <% if (params.errCode && params.errCode == 1) { %>
-      <p> Welcome: <%= params.user %> </p>
-      <p> You have logged in <%= params.count %> times. </p>
-      <p></p>
+    <div id="welcomeContainer" class="hidden2" >
+      <div id="welcomeMessage">
+      </div>
       <form id="logout-form" class="form-horizontal" action="/" method="GET">
-        <a href="javascript:{}" onclick="document.getElementById('logout-form').submit();" data-role="button" data-theme="b" data-transition="slide" >
+        <a href="javascript:{}" onclick="document.getElementById('logout-form').submit();" data-role="button" data-theme="b" data-transition="slide" class="f_left" >
           Logout
           <input class="hidden"> </input>
         </a>
       </form>
-    <% } else { %>
-
+    </div>
+    <div id='loginForm'>
       <legend>Login</legend>
-      <div class="warning">
-        <% if (params.errCode && params.errCode == -1) { %>
-            <p> 
-              Incorrect Username or Password. Please Try Again. 
-            </p>
-        <% } %>
-        <% if (params.errCode && params.errCode == -2) { %>
-            <p> 
-              A user with that username already exists. Please Try Again with another user. 
-            </p>
-        <% } %>
-        <% if (params.errCode && params.errCode == -3) { %>
+      <div class='hidden2 warning' id='firstError' >
           <p> 
-            Invalid Username. Usernames must be at least 1 character long and less than 128 characters. 
+            Incorrect Username or Password. Please Try Again. 
           </p>
-        <% } %>
-        <% if (params.errCode  && params.errCode == -4) { %>
-          <p> 
-            Invalid Password. Passwords must be at least 1 character long and less than 128 characters. 
-          </p>
-        <% } %>
       </div>
-    
-      <form id="usersModel-form" class="form-horizontal" action="/users/loginForm" method="POST">
-        <fieldset>
-          <%- partial('form', {usersModel: {}}) %>
+      <div class='hidden2 warning' id='secondError' >
+          <p> 
+            A user with that username already exists. Please Try Again with another user. 
+          </p>
+      </div>
+      <div class='hidden2 warning' id='thirdError' >
+        <p> 
+          Invalid Username. Usernames must be at least 1 character long and less than 128 characters. 
+        </p>
+      </div>
+      <div class='hidden2 warning' id='fourthError' >
+        <p> 
+          Invalid Password. Passwords must be at least 1 character long and less than 128 characters. 
+        </p>
+      </div>
+  
+      <fieldset>
+        <%- partial('form', {usersModel: {}}) %>
 
-          <div class="button-container">
-            <a href="#" onclick="loginClicked();" data-role="button" data-theme="b" data-transition="slide" class='f_left' >
-              Login
-              <input id='loginInput' name='loginInput' class='hidden' type='checkbox' > </input>
-            </a>
-            <a href="#" onclick="addClicked();" data-role="button" data-theme="b" data-transition="slide" class='f_right' >
-              Add
-              <input id='addInput' name='addInput' class='hidden' type='checkbox' > </input>
-            </a>
-          </div>
-        </fieldset>
-      </form>
-    <% } %>
+        <div class="button-container">
+          <a href="#" onclick="loginClicked();" data-role="button" data-theme="b" data-transition="slide" class='f_left' >
+            Login
+            <input id='loginInput' name='loginInput' class='hidden' type='checkbox' > </input>
+          </a>
+          <a href="#" onclick="addClicked();" data-role="button" data-theme="b" data-transition="slide" class='f_right' >
+            Add
+            <input id='addInput' name='addInput' class='hidden' type='checkbox' > </input>
+          </a>
+        </div>
+      </fieldset>
+    </div>
   </div>
 
   <style type="text/css">
@@ -87,24 +82,73 @@
     {
       document.getElementById("check1").checked=false;
     }
-    window.onload = function () {
+    $(document).ready(function (response) {
       //Uncheck the inputs
       $('#loginInput').checked = false;
       $('#addInput').checked = false;
-    };
+      $('.hidden2').hide();
+
+    });
+
+
+    function handle_login_response(data, user) {
+      if (data.errCode){
+        if (data.errCode == 1){
+          $('.warning').hide();
+          $('#loginForm').hide();
+          $('#welcomeContainer').show();
+          $('#welcomeMessage').html = '<p> Welcome: ' + user + '</p>' + 
+              '<p> You have logged in ' + data.count + ' times. </p><p></p>';
+        } else if (data.errCode == -1){
+          $('.warning').hide();
+          $('#firstError').show();
+        } 
+      } 
+    }
 
     //Login button pressed so submit form and turn on loginInput checkbox
     var loginClicked = function () {
       console.log('loginClicked');
-      document.getElementById('loginInput').checked = true; 
-      document.getElementById('usersModel-form').submit();
+      var user = $('#userInput').val();
+      var password = $('#passwordInput').val();
+      $.post('/users/login', {user: user, password: password}, function(response){ 
+        console.log("calling handle_login_response");
+        handle_login_response(response, user);
+      }, 'json');
+    };
+
+    function handle_add_user_response(data, user) {
+      if (data.errCode){
+        if (data.errCode == 1){
+          $('.warning').hide();
+          $('#loginForm').hide();
+          $('#welcomeContainer').show();
+          var welcomeHtml = '<p> Welcome: ' + user + '</p>' + 
+              '<p> You have logged in ' + data.count + ' times. </p><p></p>';
+          $('#welcomeMessage').html(welcomeHtml);
+        } else if (data.errCode == -2){
+          $('.warning').hide();
+          $('#secondError').show();
+        } else if (data.errCode == -3){
+          $('.warning').hide();
+          $('#thirdError').show();
+        } else if (data.errCode == -4){
+          $('.warning').hide();
+          $('#fourthError').show();
+        }
+      }
     }
+
     //Add button pressed so submit form and turn on addInput checkbox
     var addClicked = function () {
       console.log('addClicked');
-      document.getElementById('addInput').checked = true; 
-      document.getElementById('usersModel-form').submit();
-    }
+      var user = $('#userInput').val();
+      var password = $('#passwordInput').val();
+      $.post('/users/add', {user: user, password: password}, function(response){ 
+        console.log("calling handle_add_user_response");
+        handle_add_user_response(response, user);
+      }, 'json');
+    };
   </script>
 </body>
 </html>

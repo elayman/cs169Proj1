@@ -23,8 +23,6 @@ router.get('/').to('users_models.loginGet');
 router.get('/users/add').to('users_models.addGet');
 router.get('/users/login').to('users_models.loginGet');
 
-router.post('/users/loginForm').to('users_models.loginForm');
-
 router.post('/users/add').to('users_models.add');
 router.post('/users/login').to('users_models.login');
 router.post('/TESTAPI/resetFixture').to('users_models.resetFixture');

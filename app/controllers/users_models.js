@@ -8,19 +8,6 @@ var UsersModels = function () {
       self.respond({format: 'json', params: params, usersModels: usersModels});
     });
   };
-  //POST Request for doForm
-  this.loginForm = function (req, resp, params) {
-    var self = this;
-    console.log("LAYOUT IS: " + params.layout);
-    params.format = 'html';
-    console.log("doForm called with loginInput: " + params.loginInput + " and addInput: " + params.addInput);
-    if (params.addInput == 'on') {
-      self.add(req, resp, params);
-    } else if (params.loginInput == 'on') {
-      console.log("logging in");
-      self.login(req, resp, params);
-    }
-  };
 
   //GET Request for Add
   this.addGet = function (req, resp, params) {
@@ -37,13 +24,7 @@ var UsersModels = function () {
     var self = this;
     geddy.model.UsersModel.add(params.user, params.password, function (answerDict) {
       if (answerDict){
-        params.count = answerDict.count;
-        params.errCode = answerDict.errCode;
-        var useFormat = params.format;
-        if (useFormat != 'html') {
-          useFormat = 'json';
-        }
-        self.respond(answerDict, {format: useFormat});
+        self.respond(answerDict, {format: 'json'});
       }
     });
   };
@@ -67,14 +48,8 @@ var UsersModels = function () {
 
     geddy.model.UsersModel.login(username, password, function (answerDict) {
       if (answerDict) {
-        params.count = answerDict.count;
-        params.errCode = answerDict.errCode;
         console.log("LOGGED IN AND GOT errCode: " + answerDict.errCode);
-        var useFormat = params.format;
-        if (useFormat != 'html') {
-          useFormat = 'json';
-        }
-        self.respond(answerDict, {format: useFormat});
+        self.respond(answerDict, {format: 'json'});
       } else{
         console.log("TRIED TO LOG IN BUT FAILED");
       }
